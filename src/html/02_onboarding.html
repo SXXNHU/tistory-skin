@@ -1,0 +1,217 @@
+﻿<!-- ============================================================
+  📁 SECTION : 온보딩 랜딩 페이지 HTML
+  📌 FILE    : src/html/02_onboarding.html
+  📋 DEPLOY  : skin.html → <body> 바로 아래, #loader 위
+  📝 NOTES   : 루트('/') 진입 시에만 표시
+               ① 비디오 배경 + 파티클 캔버스
+               ② 히어로 섹션 (뱃지, 타이틀, 타이핑 애니메이션, 스크롤 버튼)
+               ③ SECTION 1: Featured Categories 카드 그리드
+               ④ SECTION 2: Latest Posts (RSS 동적 렌더링 대상)
+               ⑤ 메뉴 오버레이
+============================================================ -->
+  <body class="overflow-x-hidden bg-h-100 dark:bg-h-800" id="[##_body_id_##]">
+  
+  <!-- ======================================
+    ONBOARDING LANDING PAGE
+  ====================================== -->
+  <div id="onboarding-root">
+
+    <div class="onboarding-video-wrap">
+      <video
+        id="onboarding-bg-video"
+        src="YOUR_VIDEO_URL_HERE.mp4"
+        autoplay muted loop playsinline
+        class="onboarding-video"
+      ></video>
+      <div class="onboarding-overlay"></div>
+      <canvas id="onboarding-particles" class="onboarding-particles"></canvas>
+    </div>
+
+    <section class="onboarding-hero">
+      <div class="onboarding-hero-inner">
+        <div class="onboarding-badge" data-anim="fade-up" style="--delay:0.2s">
+          <span class="onboarding-badge-dot"></span>
+          LIFE IS NOT A SPEED, BUT A DIRECTION
+        </div>
+        <h1 class="onboarding-hero-title" data-anim="fade-up" style="--delay:0.45s">
+          Hello World!
+        </h1>
+        <h2 class="onboarding-hero-subtitle" data-anim="fade-up" style="--delay:0.65s">
+          Let's Get it&nbsp;<span id="onboarding-typing-text" class="onboarding-typing-word"></span><span class="onboarding-cursor">|</span>
+        </h2>
+        <div class="onboarding-hero-divider" data-anim="fade-up" style="--delay:0.85s">
+          <span class="onboarding-quote-icon">"</span>
+        </div>
+        <p class="onboarding-hero-desc" data-anim="fade-up" style="--delay:1s">
+          배움은 이길 때가 아니라, 넘어질 때 온답니다
+        </p>
+        <button class="onboarding-scroll-btn" id="onboarding-enter-btn" data-anim="fade-up" style="--delay:1.2s" aria-label="최신 글 보기">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+        <div class="onboarding-scroll-indicator" id="sidebar-scroll-indicator">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== SECTION 1: FEATURED CATEGORIES ====== -->
+    <section class="onboarding-section onboarding-categories">
+      <div class="onboarding-section-inner">
+        <header class="onboarding-section-header">
+          <span class="onboarding-badge">
+            <span class="onboarding-badge-dot"></span>
+            EXPLORE BY TOPIC
+          </span>
+          <h2 class="onboarding-section-title">
+            Featured Categories
+          </h2>
+          <p class="onboarding-section-subtitle">
+            다양한 카테고리를 둘러보세요
+          </p>
+        </header>
+
+        <div class="onboarding-cat-grid">
+          <!-- #1 AWS -->
+          <a href="/category/AWS" class="onboarding-cat-card" data-rank="1">
+            <span class="onboarding-cat-rank">#1</span>
+            <span class="onboarding-cat-dot"></span>
+            <div class="onboarding-cat-icon-wrap">
+              <i class="onboarding-cat-icon fa-brands fa-aws"></i>
+            </div>
+            <div class="onboarding-cat-divider"></div>
+            <h3 class="onboarding-cat-name">AWS</h3>
+            <p class="onboarding-cat-count">34 ARTICLES</p>
+          </a>
+
+          <!-- #2 Linux -->
+          <a href="/category/Linux" class="onboarding-cat-card" data-rank="2">
+            <span class="onboarding-cat-rank">#2</span>
+            <span class="onboarding-cat-dot"></span>
+            <div class="onboarding-cat-icon-wrap">
+              <i class="onboarding-cat-icon fa-brands fa-linux"></i>
+            </div>
+            <div class="onboarding-cat-divider"></div>
+            <h3 class="onboarding-cat-name">Linux</h3>
+            <p class="onboarding-cat-count">39 ARTICLES</p>
+          </a>
+
+          <!-- #3 Node.js -->
+          <a href="/category/Nodejs" class="onboarding-cat-card" data-rank="3">
+            <span class="onboarding-cat-rank">#3</span>
+            <span class="onboarding-cat-dot"></span>
+            <div class="onboarding-cat-icon-wrap">
+              <i class="onboarding-cat-icon fa-brands fa-node-js"></i>
+            </div>
+            <div class="onboarding-cat-divider"></div>
+            <h3 class="onboarding-cat-name">Node.js</h3>
+            <p class="onboarding-cat-count">76 ARTICLES</p>
+          </a>
+
+          <!-- GIT -->
+          <a href="/category/Git" class="onboarding-cat-card">
+            <span class="onboarding-cat-dot"></span>
+            <div class="onboarding-cat-icon-wrap">
+              <i class="onboarding-cat-icon fa-brands fa-git-alt"></i>
+            </div>
+            <div class="onboarding-cat-divider"></div>
+            <h3 class="onboarding-cat-name">GIT</h3>
+            <p class="onboarding-cat-count">20 ARTICLES</p>
+          </a>
+
+          <!-- WEB -->
+          <a href="/category/Web" class="onboarding-cat-card">
+            <span class="onboarding-cat-dot"></span>
+            <div class="onboarding-cat-icon-wrap">
+              <i class="onboarding-cat-icon fa-solid fa-globe"></i>
+            </div>
+            <div class="onboarding-cat-divider"></div>
+            <h3 class="onboarding-cat-name">WEB 지식</h3>
+            <p class="onboarding-cat-count">46 ARTICLES</p>
+          </a>
+
+          <!-- JavaScript -->
+          <a href="/category/JavaScript" class="onboarding-cat-card">
+            <span class="onboarding-cat-dot"></span>
+            <div class="onboarding-cat-icon-wrap">
+              <i class="onboarding-cat-icon fa-brands fa-js"></i>
+            </div>
+            <div class="onboarding-cat-divider"></div>
+            <h3 class="onboarding-cat-name">JavaScript</h3>
+            <p class="onboarding-cat-count">65 ARTICLES</p>
+          </a>
+
+          <!-- CSS -->
+          <a href="/category/CSS" class="onboarding-cat-card">
+            <span class="onboarding-cat-dot"></span>
+            <div class="onboarding-cat-icon-wrap">
+              <i class="onboarding-cat-icon fa-brands fa-css3-alt"></i>
+            </div>
+            <div class="onboarding-cat-divider"></div>
+            <h3 class="onboarding-cat-name">CSS</h3>
+            <p class="onboarding-cat-count">42 ARTICLES</p>
+          </a>
+
+          <!-- VSCode -->
+          <a href="/category/VSCode" class="onboarding-cat-card">
+            <span class="onboarding-cat-dot"></span>
+            <div class="onboarding-cat-icon-wrap">
+              <i class="onboarding-cat-icon fa-solid fa-code"></i>
+            </div>
+            <div class="onboarding-cat-divider"></div>
+            <h3 class="onboarding-cat-name">VSCode</h3>
+            <p class="onboarding-cat-count">26 ARTICLES</p>
+          </a>
+
+          <!-- MySQL -->
+          <a href="/category/MySQL" class="onboarding-cat-card" >
+            <span class="onboarding-cat-dot"></span>
+            <div class="onboarding-cat-icon-wrap">
+              <i class="onboarding-cat-icon fa-solid fa-database"></i>
+            </div>
+            <div class="onboarding-cat-divider"></div>
+            <h3 class="onboarding-cat-name">MySQL</h3>
+            <p class="onboarding-cat-count">33 ARTICLES</p>
+          </a>
+
+          <!-- Bootstrap5 -->
+          <a href="/category/Bootstrap" class="onboarding-cat-card">
+            <span class="onboarding-cat-dot"></span>
+            <div class="onboarding-cat-icon-wrap">
+              <i class="onboarding-cat-icon fa-brands fa-bootstrap"></i>
+            </div>
+            <div class="onboarding-cat-divider"></div>
+            <h3 class="onboarding-cat-name">Bootstrap5</h3>
+            <p class="onboarding-cat-count">13 ARTICLES</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== SECTION 2: LATEST POSTS ====== -->
+    <section class="onboarding-section onboarding-latest">
+      <div class="onboarding-section-inner">
+        <header class="onboarding-section-header">
+          <span class="onboarding-badge" data-scroll-anim>
+            <span class="onboarding-badge-dot"></span>
+            FRESH FROM THE LAB
+          </span>
+          <h2 class="onboarding-section-title" data-scroll-anim style="--scroll-delay:0.1s">
+            Latest Posts
+          </h2>
+          <p class="onboarding-section-subtitle" data-scroll-anim style="--scroll-delay:0.2s">
+            최신 포스팅을 구경해보세요
+          </p>
+        </header>
+        <div class="onboarding-latest-layout" id="onboarding-latest-posts"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- 메뉴 오버레이 -->
+  <div class="onboarding-menu-overlay" id="onboarding-menu-overlay"></div>
+
+  <!-- ====== /ONBOARDING LANDING PAGE ====== -->
