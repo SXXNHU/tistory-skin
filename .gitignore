@@ -1,0 +1,69 @@
+# =====================
+# Node.js
+# =====================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+.npm
+.pnpm-store/
+
+# =====================
+# 빌드 / 캐시
+# =====================
+dist/
+.cache/
+.temp/
+*.tmp
+
+# =====================
+# 환경 변수
+# =====================
+.env
+.env.local
+.env.*.local
+
+# =====================
+# OS 생성 파일
+# =====================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+desktop.ini
+ehthumbs.db
+
+# =====================
+# 에디터 / IDE
+# =====================
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.orig
+
+# =====================
+# 로그
+# =====================
+*.log
+logs/
+
+# =====================
+# 백업 파일
+# =====================
+*.bak
+*.backup
+
+# =====================
+# 배포용 파일은 추적 대상 (gitignore 제외)
+# skin.html, skin.css → Tistory에 붙여넣는 최종 결과물
+# =====================
