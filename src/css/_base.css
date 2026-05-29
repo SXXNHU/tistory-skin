@@ -1,17 +1,12 @@
-﻿/* ============================================================
+/* ============================================================
   📁 SECTION : Tistory 기본 UI 오버라이드
   📌 FILE    : src/css/_base.css
   📋 DEPLOY  : style.css → vendor.css 아래
-  📝 NOTES   : ① 기본 구독 버튼(.btn_menu_toolbar.btn_subscription) 숨기기
-               ② #top 내 구독/메뉴 버튼 커스텀 스타일
-               ③ 각종 Tistory 기본 요소 보정
-============================================================ *//* 티스토리 기본 구독 버튼 숨기기 */
-.btn_menu_toolbar.btn_subscription {
-  display: none !important;
-}
+  📝 NOTES   : ① #top 내 구독 버튼 커스텀 스타일
+               ② #bottom 다크모드/상단이동 버튼 스타일
+============================================================ */
 
-#top .menu_toolbar .subscribe,
-#top .menu_toolbar .btn_menu_type2 {
+#top .menu_toolbar .subscribe {
 
   display: flex;
 
@@ -44,16 +39,14 @@
   outline-width: 0px
 }
 
-#top .menu_toolbar .subscribe:hover,
-#top .menu_toolbar .btn_menu_type2:hover {
+#top .menu_toolbar .subscribe:hover {
 
   --tw-bg-opacity: 1;
 
   background-color: rgb(230 230 233 / var(--tw-bg-opacity))
 }
 
-.dark #top .menu_toolbar .subscribe,
-.dark #top .menu_toolbar .btn_menu_type2 {
+.dark #top .menu_toolbar .subscribe {
 
   --tw-bg-opacity: 1;
 
@@ -64,8 +57,7 @@
   color: rgb(244 244 246 / var(--tw-text-opacity))
 }
 
-.dark #top .menu_toolbar .subscribe:hover,
-.dark #top .menu_toolbar .btn_menu_type2:hover {
+.dark #top .menu_toolbar .subscribe:hover {
 
   --tw-bg-opacity: 1;
 
@@ -81,187 +73,6 @@
   font-style: normal;
 
   line-height: 1
-}
-
-#menubar_wrapper {
-
-  position: relative
-}
-
-#menubar_wrapper .btn_menu_type2 .ico_tistory_sign {
-
-  opacity: 0.7
-}
-
-.dark #menubar_wrapper .btn_menu_type2 .ico_tistory_sign {
-
-  opacity: 1;
-
-  --tw-invert: invert(100%);
-
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)
-}
-
-#menubar_wrapper .header_layer {
-
-  position: absolute;
-
-  top: 3rem;
-
-  right: 0px;
-
-  left: auto;
-
-  bottom: auto;
-
-  --tw-bg-opacity: 1;
-
-  background-color: rgb(244 244 246 / var(--tw-bg-opacity));
-
-  --tw-shadow: 0 0 #0000;
-
-  --tw-shadow-colored: 0 0 #0000;
-
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
-}
-
-.dark #menubar_wrapper .header_layer {
-
-  --tw-bg-opacity: 1;
-
-  background-color: rgb(41 42 45 / var(--tw-bg-opacity))
-}
-
-#menubar_wrapper .header_layer::after {
-
-  display: none
-}
-
-#menubar_wrapper .header_layer a {
-
-  text-decoration-line: none
-}
-
-#menubar_wrapper .header_layer .info_profile {
-
-  --tw-border-opacity: 1;
-
-  border-bottom-color: rgb(230 230 233 / var(--tw-border-opacity))
-}
-
-.dark #menubar_wrapper .header_layer .info_profile {
-
-  --tw-border-opacity: 1;
-
-  border-bottom-color: rgb(53 54 56 / var(--tw-border-opacity))
-}
-
-#menubar_wrapper .header_layer .info_profile .txt_id {
-
-  --tw-text-opacity: 1;
-
-  color: rgb(102 102 110 / var(--tw-text-opacity))
-}
-
-.dark #menubar_wrapper .header_layer .info_profile .txt_id {
-
-  --tw-text-opacity: 1;
-
-  color: rgb(244 244 246 / var(--tw-text-opacity))
-}
-
-#menubar_wrapper .header_layer .info_profile .txt_email,
-#menubar_wrapper .header_layer .info_profile .link_setting_type2 {
-
-  --tw-text-opacity: 1;
-
-  color: rgb(153 153 161 / var(--tw-text-opacity))
-}
-
-#menubar_wrapper .header_layer .info_profile .txt_email:hover,
-#menubar_wrapper .header_layer .info_profile .link_setting_type2:hover {
-
-  --tw-text-opacity: 1;
-
-  color: rgb(30 31 33 / var(--tw-text-opacity))
-}
-
-.dark #menubar_wrapper .header_layer .info_profile .txt_email:hover,
-.dark #menubar_wrapper .header_layer .info_profile .link_setting_type2:hover {
-
-  --tw-text-opacity: 1;
-
-  color: rgb(244 244 246 / var(--tw-text-opacity))
-}
-
-#menubar_wrapper .header_layer .list_toolbar li .link_list {
-
-  --tw-text-opacity: 1;
-
-  color: rgb(102 102 110 / var(--tw-text-opacity))
-}
-
-.dark #menubar_wrapper .header_layer .list_toolbar li .link_list {
-
-  --tw-text-opacity: 1;
-
-  color: rgb(244 244 246 / var(--tw-text-opacity))
-}
-
-#menubar_wrapper .header_layer .list_toolbar li:last-child .link_list {
-
-  --tw-text-opacity: 1;
-
-  color: rgb(153 153 161 / var(--tw-text-opacity))
-}
-
-#menubar_wrapper .header_layer .list_toolbar li:last-child .link_list:hover {
-
-  --tw-text-opacity: 1;
-
-  color: rgb(30 31 33 / var(--tw-text-opacity))
-}
-
-.dark #menubar_wrapper .header_layer .list_toolbar li:last-child .link_list:hover {
-
-  --tw-text-opacity: 1;
-
-  color: rgb(244 244 246 / var(--tw-text-opacity))
-}
-
-#menubar_wrapper .header_layer .wrap_list .tit_list_type {
-
-  --tw-text-opacity: 1;
-
-  color: rgb(153 153 161 / var(--tw-text-opacity))
-}
-
-#menubar_wrapper .header_layer .wrap_list .tit_list_type:hover {
-
-  --tw-text-opacity: 1;
-
-  color: rgb(30 31 33 / var(--tw-text-opacity))
-}
-
-.dark #menubar_wrapper .header_layer .wrap_list .tit_list_type:hover {
-
-  --tw-text-opacity: 1;
-
-  color: rgb(244 244 246 / var(--tw-text-opacity))
-}
-
-#menubar_wrapper .header_layer .wrap_toolbar {
-
-  --tw-border-opacity: 1;
-
-  border-top-color: rgb(230 230 233 / var(--tw-border-opacity))
-}
-
-.dark #menubar_wrapper .header_layer .wrap_toolbar {
-
-  --tw-border-opacity: 1;
-
-  border-top-color: rgb(53 54 56 / var(--tw-border-opacity))
 }
 
 #bottom .btn {
