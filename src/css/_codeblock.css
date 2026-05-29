@@ -1,0 +1,139 @@
+﻿/* ============================================================
+  📁 SECTION : 코드블럭 스타일
+  📌 FILE    : src/css/_codeblock.css
+  📋 DEPLOY  : style.css → _base.css 아래
+  📝 NOTES   : highlight.js 기반 코드블럭 커스텀
+               복사 버튼, 언어 라벨, 라인 하이라이트 등
+               (주석 처리된 hover 하이라이트 룰 포함)
+============================================================ *//* 코드블럭 CSS Start */
+pre {
+    position: relative;
+}
+
+.hljs {
+    display: flex !important;
+    flex-direction: column;
+    padding: 0 !important;
+    font-size: 14px;
+    border-radius: 8px;
+    box-shadow: 0 12px 24px rgb(0 0 0 / 40%);
+    color: #cfd2d1;
+    background-color: #343131;
+    font-family: D2Coding, Menlo, Courier, monospace;
+}
+
+.hljs .language-label {
+    margin-left: 10px;
+    flex-grow: 1;
+    align-self: center;
+    font-weight: bold;
+    text-transform: capitalize;
+    display: flex;
+    align-items: center;
+    line-height: 1;
+    padding-top: 1px;
+}
+
+.hljs .line {
+    counter-increment: line-idx;
+    line-height: 1.5;
+    white-space: pre;
+}
+
+.hljs .line::before {
+    content: counter(line-idx);
+    display: inline-block;
+    width: 24px;
+    margin-right: 16px;
+    text-align: right;
+    font-size: 0.8rem;
+    color: #747a7a;
+}
+
+/* 마우스 hover 시 하이라이트 - 쓸 사람은 주석 해제하시길 */
+/* .hljs .line:hover {
+  background-color: #262830;
+}
+.hljs .line:hover::before {
+  color: #cfd2d1;
+} */
+
+.hljs .code-header {
+    display: flex;
+    align-items: center;
+    padding: 14px;
+    background-color: #434041;
+    border-radius: 8px 8px 0 0;
+}
+
+.hljs .code-header .btn {
+    width: 15px;
+    height: 15px;
+    margin: 0 5px;
+    border-radius: 50%;
+}
+
+.hljs .code-header .btn.red {
+    background-color: #f5655b;
+}
+
+.hljs .code-header .btn.yellow {
+    background-color: #f6bd3b;
+}
+
+.hljs .code-header .btn.green {
+    background-color: #43c645;
+}
+
+.hljs .code-body {
+    max-height: 1000px;
+    margin: 8px;
+    overflow: auto;
+    padding-bottom: 10px;
+}
+
+.hljs .code-body::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.hljs .code-body::-webkit-scrollbar-thumb {
+    background-color: rgb(92 90 90);
+    border-radius: 4px;
+}
+
+.hljs .code-body::-webkit-scrollbar-corner {
+    display: none;
+}
+
+.hljs .copy-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    padding: 0px 12px;
+    height: 32px;
+    line-height: 1;
+    font-size: 12px;
+    font-weight: normal;
+    color: #fff;
+    background-color: #ffffff17;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.hljs .copy-btn:hover {
+    background-color: #ffffff30;
+}
+
+.copied-text {
+    font-size: 12px;
+    font-weight: bold;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
+}
+
