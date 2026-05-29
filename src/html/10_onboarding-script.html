@@ -1,0 +1,333 @@
+﻿<!-- ============================================================
+  📁 SECTION : 온보딩 스크립트 (+ </body></html>)
+  📌 FILE    : src/html/10_onboarding-script.html
+  📋 DEPLOY  : skin.html → s_t3 닫기 태그 아래 (파일 맨 끝)
+  📝 NOTES   : 루트('/') 진입 여부 확인 후 조건부 실행
+               ① 타이핑 애니메이션 (WORDS 배열 수정으로 커스텀 가능)
+               ② 메가메뉴 열기/닫기 + 오버레이
+               ③ 온보딩 닫기 → 기존 커버 페이지 노출
+               ④ 파티클 캔버스 애니메이션 (40개 파티클)
+               ⑤ 스크롤 진입 애니메이션 (data-scroll-anim)
+               ⑥ 수강 일수 카운터 (START_DATE 수정 필요)
+               ⑦ 히어로 fade-up 애니메이션
+               ⑧ Latest Posts — RSS 파싱 + 동적 렌더링
+               📌 START_DATE = '2025-09-06' 변경 필요
+               📌 비디오 URL: src/html/02_onboarding.html 의 YOUR_VIDEO_URL_HERE.mp4
+============================================================ -->
+    <!-- ====== ONBOARDING SCRIPTS ====== -->
+    <script>
+      /* =========================================================
+      * 온보딩 메인 로직
+      * - 루트('/') 진입 시에만 실행
+      * - 타이핑 애니메이션 / 메가메뉴 / 파티클 / 온보딩 닫기
+      * ========================================================= */
+      (function () {
+
+        /* ── 루트 페이지 + 온보딩 요소 존재 여부 확인 ── */
+        var isRoot = window.location.pathname === '/';
+        var root   = document.getElementById('onboarding-root');
+
+        if (!isRoot || !root) {
+          if (root) root.remove();
+          return;
+        }
+
+        /* ── 페이지 진입: #main 숨기고 온보딩 표시 ── */
+        document.body.classList.add('onboarding-active');
+
+        /* =========================================================
+        * 1. 타이핑 애니메이션
+        * ========================================================= */
+        var WORDS   = ['Java', 'Python', 'Spring', 'Node.js', 'DevOps', 'Backend', 'Algorithm'];
+        var TYPING  = 110;   // 타이핑 딜레이 (ms)
+        var DELETE  = 60;    // 삭제 딜레이 (ms)
+        var PAUSE_A = 1600;  // 단어 완성 후 대기
+        var PAUSE_B = 300;   // 다음 단어 전 대기
+
+        var wordEl   = document.getElementById('onboarding-typing-text');
+        var wordIdx  = 0;
+        var charIdx  = 0;
+        var deleting = false;
+
+        function typeStep() {
+          if (!wordEl) return;
+
+          var word = WORDS[wordIdx];
+
+          if (!deleting) {
+            /* 타이핑 */
+            wordEl.textContent = word.slice(0, ++charIdx);
+            if (charIdx === word.length) {
+              deleting = true;
+              setTimeout(typeStep, PAUSE_A);
+              return;
+            }
+            setTimeout(typeStep, TYPING + Math.random() * 40);
+          } else {
+            /* 삭제 */
+            wordEl.textContent = word.slice(0, --charIdx);
+            if (charIdx === 0) {
+              deleting = false;
+              wordIdx  = (wordIdx + 1) % WORDS.length;
+              setTimeout(typeStep, PAUSE_B);
+              return;
+            }
+            setTimeout(typeStep, DELETE + Math.random() * 20);
+          }
+        }
+
+        if (wordEl) {
+          /* 첫 단어를 완성된 상태로 시작 후 삭제 애니메이션 진행 */
+          wordEl.textContent = WORDS[0];
+          charIdx  = WORDS[0].length;
+          deleting = true;
+          setTimeout(typeStep, PAUSE_A);
+        }
+
+
+        /* =========================================================
+        * 2. 메가메뉴
+        * ========================================================= */
+        var navItems = document.querySelectorAll('.onboarding-nav-item');
+        var overlay  = document.getElementById('onboarding-menu-overlay');
+        var activeItem = null;
+
+        function closeMenu() {
+          if (activeItem) activeItem.classList.remove('active');
+          activeItem = null;
+          if (overlay) overlay.classList.remove('active');
+        }
+
+        navItems.forEach(function (item) {
+          item.querySelector('.onboarding-nav-btn').addEventListener('click', function (e) {
+            e.stopPropagation();
+
+            /* 같은 항목 클릭 시 토글 */
+            if (item === activeItem) {
+              closeMenu();
+              return;
+            }
+
+            if (activeItem) activeItem.classList.remove('active');
+            item.classList.add('active');
+            activeItem = item;
+            overlay.classList.add('active');
+          });
+        });
+
+        if (overlay) overlay.addEventListener('click', closeMenu);
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') closeMenu();
+        });
+
+
+        /* =========================================================
+        * 3. 온보딩 닫기 → 기존 커버 페이지 노출
+        * ========================================================= */
+        function scrollToNext() {
+          var next = document.querySelector('.onboarding-section');
+          if (next) next.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        var enterBtn = document.getElementById('onboarding-enter-btn');
+
+
+        /* =========================================================
+        * 4. 파티클 애니메이션 (Canvas)
+        * ========================================================= */
+        var canvas = document.getElementById('onboarding-particles');
+
+        if (canvas && canvas.getContext) {
+          var ctx = canvas.getContext('2d');
+          var W, H;
+
+          function resizeCanvas() {
+            W = canvas.width  = window.innerWidth;
+            H = canvas.height = window.innerHeight;
+          }
+          resizeCanvas();
+          window.addEventListener('resize', resizeCanvas);
+
+          /* 파티클 초기 생성 */
+          var particles = Array.from({ length: 40 }, function () {
+            return {
+              x  : Math.random() * 1920,
+              y  : Math.random() * 1080,
+              r  : Math.random() * 1.4 + 0.3,
+              vx : (Math.random() - 0.5) * 0.3,
+              vy : (Math.random() - 0.5) * 0.3,
+              a  : Math.random() * 0.4 + 0.1,
+            };
+          });
+
+          /* 렌더 루프 */
+          (function draw() {
+            ctx.clearRect(0, 0, W, H);
+
+            particles.forEach(function (p) {
+              ctx.beginPath();
+              ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+              ctx.fillStyle = 'rgba(255,255,255,' + p.a + ')';
+              ctx.fill();
+
+              p.x += p.vx;
+              p.y += p.vy;
+
+              /* 화면 경계 wrap-around */
+              if (p.x < 0) p.x = W;  else if (p.x > W) p.x = 0;
+              if (p.y < 0) p.y = H;  else if (p.y > H) p.y = 0;
+            });
+
+            requestAnimationFrame(draw);
+          })();
+        }
+
+      })();
+
+      /* =========================================================
+      * 6. 수강 일수 카운터
+      * ========================================================= */
+      (function () {
+        var START_DATE = new Date('2025-09-06');
+        var today      = new Date();
+        var days       = Math.floor((today - START_DATE) / (1000 * 60 * 60 * 24)) + 1;
+
+        var el = document.getElementById('sb-days-num');
+        if (el) el.textContent = '+' + days;
+      })();
+
+
+      /* ── 8. Latest Posts: 서버사이드 대표이미지 데이터 → 동적 렌더링 ── */
+      (function () {
+        var container = document.getElementById('onboarding-latest-posts');
+        if (!container) return;
+
+        /* RSS 파싱으로 최신 포스트 로드 */
+        var BLOG_URL = window.location.origin;
+        container.innerHTML =
+          '<div class="onboarding-posts-loading">' +
+            '<span></span><span></span><span></span>' +
+          '</div>';
+
+        fetch(BLOG_URL + '/rss')
+          .then(function (res) { return res.text(); })
+          .then(function (xmlText) {
+            var parser = new DOMParser();
+            var xml    = parser.parseFromString(xmlText, 'text/xml');
+            var items  = Array.from(xml.querySelectorAll('item')).slice(0, 4);
+            if (!items.length) { container.innerHTML = ''; return; }
+
+            var posts = items.map(function (item) {
+              var linkNode = item.querySelector('link');
+              var link = (
+                (linkNode && linkNode.nextSibling && linkNode.nextSibling.nodeValue) ||
+                (linkNode && linkNode.textContent) || ''
+              ).trim();
+
+              var title    = (item.querySelector('title')?.textContent    || '').trim();
+              var category = (item.querySelector('category')?.textContent || '').trim();
+              var dateRaw  = (item.querySelector('pubDate')?.textContent  || '').trim();
+              var descRaw  = (item.querySelector('description')?.textContent || '');
+
+              var dateStr = '';
+              try {
+                var d = new Date(dateRaw);
+                dateStr = d.getFullYear() + '.' +
+                  String(d.getMonth() + 1).padStart(2, '0') + '.' +
+                  String(d.getDate()).padStart(2, '0');
+              } catch (e) {}
+
+              var thumb = '';
+              var m1 = descRaw.match(/data-url=["']([^"']+blog\.kakaocdn\.net[^"']+)["']/i);
+              if (m1) thumb = m1[1];
+              if (!thumb) {
+                var m2 = descRaw.match(/<img[^>]+src=["'](https?:\/\/[^"']*(blog\.kakaocdn\.net|img\d*\.daumcdn\.net)[^"']+)["']/i);
+                if (m2) thumb = m2[1];
+              }
+              if (!thumb) {
+                var m3 = descRaw.match(/<img[^>]+src=["'](https?:\/\/[^"']+\.(?:jpg|jpeg|png|gif|webp))["']/i);
+                if (m3) thumb = m3[1];
+              }
+              if (thumb && thumb.startsWith('//')) thumb = 'https:' + thumb;
+              if (thumb && thumb.startsWith('/'))  thumb = BLOG_URL + thumb;
+
+              var tmp = document.createElement('div');
+              tmp.innerHTML = descRaw;
+              var summary = (tmp.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 150);
+
+              return { title: title, link: link, category: category,
+                       date: dateStr, thumb: thumb, summary: summary };
+            });
+
+            renderLatest(posts, container);
+          })
+          .catch(function () { container.innerHTML = ''; });
+
+        /* ── 렌더링 ── */
+        function renderLatest(posts, el) {
+          var f = posts[0];
+          var sides = posts.slice(1);
+
+          el.innerHTML =
+            /* Featured */
+            '<a href="' + f.link + '" class="onboarding-featured-post">' +
+              (f.thumb
+                ? '<img class="onboarding-featured-thumb lazyload" data-src="' + f.thumb + '" data-sizes="auto" alt="">'
+                : '<div class="onboarding-featured-thumb-fallback"></div>') +
+              '<div class="onboarding-featured-overlay"></div>' +
+              '<div class="onboarding-featured-content">' +
+                (f.category
+                  ? '<span class="onboarding-featured-category">' + esc(f.category) + '</span>'
+                  : '') +
+                '<h3 class="onboarding-featured-title">' + esc(f.title) + '</h3>' +
+                (f.summary
+                  ? '<p class="onboarding-featured-summary">' + esc(f.summary) + '…</p>'
+                  : '') +
+                '<div class="onboarding-featured-meta">' +
+                  '<time>' + f.date + '</time>' +
+                '</div>' +
+              '</div>' +
+            '</a>' +
+
+            /* Side Posts */
+            '<div class="onboarding-side-posts">' +
+              sides.map(function (p, i) {
+                return (
+                  '<a href="' + p.link + '" class="onboarding-side-post">' +
+                    '<div class="onboarding-side-post-info">' +
+                      (p.category
+                        ? '<span class="onboarding-side-category">' + esc(p.category) + '</span>'
+                        : '') +
+                      '<h4 class="onboarding-side-title">' + esc(p.title) + '</h4>' +
+                      '<div class="onboarding-side-meta">' +
+                        '<time>' + p.date + '</time>' +
+                      '</div>' +
+                    '</div>' +
+                    '<div class="onboarding-side-thumb-wrap">' +
+                      (p.thumb
+                        ? '<img class="onboarding-side-thumb lazyload"' +
+                          ' data-src="' + p.thumb + '" data-sizes="auto" alt="">'
+                        : '<div class="onboarding-side-thumb-fallback"></div>') +
+                    '</div>' +
+                  '</a>'
+                );
+              }).join('') +
+            '</div>';
+
+          /* lazysizes 재트리거 */
+          if (window.lazySizes) window.lazySizes.autoSizer.checkElems();
+        }
+
+        /* XSS 방지 */
+        function esc(str) {
+          return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+        }
+      })();
+    </script>
+    
+    <!-- ====== /ONBOARDING SCRIPTS ====== -->
+  </body>
+</html>
