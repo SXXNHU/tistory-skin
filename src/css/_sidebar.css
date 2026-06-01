@@ -1,0 +1,676 @@
+﻿/* ============================================================
+  📁 SECTION : 사이드바 스타일
+  📌 FILE    : src/css/_sidebar.css
+  📋 DEPLOY  : style.css → _list-article.css 아래 (파일 맨 끝)
+  📝 NOTES   : ── 사이드바 컨테이너 (#sidebar) — 항상 다크 테마 유지
+               ── 글로우 데코 (.sidebar-glow)
+               ── 스크롤 래퍼 + 커스텀 스크롤바 (.sidebar-wrap)
+               ── 프로필 카드 (.sb-profile-card, .sb-avatar-ring)
+               ── 통계 카드 (.sb-stats)
+               ── 검색 박스 (.sb-search, 고양이/발자국 이미지)
+               ── 섹션 공통 + 카테고리 트리 (.sb-category)
+               ── 소셜 링크 (.sb-social-btn)
+               ── 카피라이트 (.sb-copyright)
+============================================================ *//* ============================================================
+   SIDEBAR REDESIGN - 다크 시네마틱 + 앰버 액센트
+   ============================================================ */
+
+/* 사이드바 컨테이너 */
+.onboarding-sidebar {
+  background: linear-gradient(180deg, #f8f7f5 0%, #f0ede8 100%) !important;
+  border-right: 1px solid rgba(0,0,0,0.07);
+}
+
+.dark .onboarding-sidebar {
+  background: linear-gradient(180deg, #1a1816 0%, #0f0e0d 100%) !important;
+  border-right: 1px solid rgba(255,255,255,0.06);
+}
+
+/* 라이트 모드 대응 (다크 무드 유지하되 살짝만 톤다운하고 싶다면) */
+/* 사이드바는 항상 다크 유지하는 것이 시네마틱 무드에 어울림 */
+
+/* 글로우 데코 */
+.sidebar-glow {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(232,160,60,0.10) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.dark .sidebar-glow {
+  background: radial-gradient(circle, rgba(232,160,60,0.18) 0%, transparent 70%);
+}
+
+/* 스크롤 래퍼 */
+.sidebar-wrap {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px 10px 32px;
+  height: 100%;
+  width: 100%;         
+  overflow-x: hidden;
+  overflow-y: scroll;
+  box-sizing: border-box;
+}
+
+/* 스크롤바 커스텀 */
+.sidebar-wrap::-webkit-scrollbar { display: none; }
+.sidebar-wrap {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.sidebar-scroll-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: linear-gradient(to bottom, transparent, rgba(240, 237, 232, 0.95));
+  pointer-events: none;
+  z-index: 9;
+  transition: opacity 0.3s ease;
+}
+
+.dark .sidebar-scroll-fade {
+  background: linear-gradient(to bottom, transparent, rgba(15, 14, 13, 0.9));
+}
+
+.sidebar-scroll-fade.hidden {
+  opacity: 0;
+}
+
+.sidebar-scroll-indicator {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  pointer-events: none;
+  z-index: 9700;
+}
+
+.sidebar-scroll-indicator span {
+  display: block;
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid #e8a03c;
+  border-bottom: 2px solid #e8a03c;
+  transform: rotate(45deg);
+  opacity: 0;
+  animation: none;
+}
+
+.sidebar-scroll-indicator span:nth-child(1) {
+  animation: sb-arrow 2.5s ease-in-out infinite;
+  animation-delay: 0s;
+}
+.sidebar-scroll-indicator span:nth-child(2) {
+  animation: sb-arrow 2.5s ease-in-out infinite;
+  animation-delay: 0.15s;
+}
+.sidebar-scroll-indicator span:nth-child(3) {
+  animation: sb-arrow 2.5s ease-in-out infinite;
+  animation-delay: 0.3s;
+}
+
+@keyframes sb-arrow {
+  0%   { opacity: 0; }
+  8%   { opacity: 1; }   /* 켜짐 */
+  30%  { opacity: 0.5; } /* 절반 */
+  50%  { opacity: 0; }   /* 꺼짐 */
+  100% { opacity: 0; }   /* 대기 */
+}
+
+/* 모든 요소 폭 */
+.onboarding-sidebar .sb-profile-card,
+.onboarding-sidebar .sb-stats,
+.onboarding-sidebar .sb-search,
+.onboarding-sidebar .sb-section,
+.onboarding-sidebar .sb-social,
+.onboarding-sidebar .sb-copyright {
+  width: 100%;        
+}
+
+/* 1. 프로필 카드 */
+.sb-profile-card {
+  background: rgba(255,255,255,0.9);
+  border: 1px solid rgba(0,0,0,0.07);
+  border-radius: 8px;
+  padding: 16px;
+  backdrop-filter: blur(10px);
+}
+
+.dark .sb-profile-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.sb-profile-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.sb-avatar-ring {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  padding: 1px;
+  background: linear-gradient(135deg, #e8a03c 0%, #d85a30 50%, #e8a03c 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.sb-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #f8f7f5;
+}
+
+.dark .sb-avatar {
+  border: 2px solid #1a1816;
+}
+
+.sb-profile-info { flex: 1; min-width: 0; }
+.sb-name {
+  color: #1e1f21;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 1px;
+}
+
+.dark .sb-name {
+  color: #fff;
+}
+
+.sb-status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: rgba(0,0,0,0.45);
+  font-size: 11px;
+}
+
+.dark .sb-status {
+  color: rgba(255,255,255,0.55);
+}
+
+.sb-status-dot {
+  width: 6px;
+  height: 6px;
+  background: #43c645;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 6px rgba(67,198,69,0.5);
+  animation: sb-pulse 2s ease-in-out infinite;
+}
+@keyframes sb-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.sb-profile-desc {
+  font-size: 11px;
+  color: rgba(0,0,0,0.45);
+  line-height: 1.6;
+  padding-top: 12px;
+  margin-top: 12px;
+  border-top: 1px solid rgba(0,0,0,0.07);
+}
+
+.dark .sb-profile-desc {
+  color: rgba(255,255,255,0.55);
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+/* 2. 통계 카드 */
+.sb-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.sb-stat-total {
+  aspect-ratio: 7 / 4;
+  align-self: start;
+}
+
+.sb-stat-days {
+  aspect-ratio: 7 / 4;
+  align-self: start;
+}
+
+.sb-stat-item {
+  background: rgba(255,255,255,0.9);
+  border: 1px solid rgba(0,0,0,0.07);
+  border-radius: 8px;
+  text-align: center;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+}
+
+.dark .sb-stat-item {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.sb-stat-num {
+  color: #1e1f21;
+  font-weight: 600;
+  font-family: 'YPairing', sans-serif;
+}
+
+.dark .sb-stat-num {
+  color: #fff;
+}
+
+.sb-stat-num.accent { color: #e8a03c; }
+
+.sb-stat-label {
+  color: rgba(0,0,0,0.4);
+  font-size: 10px;
+  margin-top: 3px;
+  letter-spacing: 0.05em;
+}
+
+.dark .sb-stat-label {
+  color: rgba(255,255,255,0.4);
+}
+
+/* 3. 검색 */
+.sb-search {
+  position: relative;  /* 기준점 */
+}
+
+.sb-search-cat {
+  position: absolute;
+  width: 82px;
+  height: 82px;
+  object-fit: contain;
+  top: -42px;    /* 검색창 위로 튀어나오는 정도 */
+  right: 4px;    /* 우측 위치 */
+  z-index: 10;   /* 검색창보다 위 레이어 */
+}
+
+.sb-search-footprint {
+  position: absolute;
+  width: 180px;        /* 발바닥 크기에 맞게 조절 */
+  height: auto;
+  top: -56px;         /* 고양이보다 살짝 낮게 */
+  right: 54px;        /* 고양이(82px) 왼쪽에 나란히 */
+  z-index: 10;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.sb-search-box {
+  display: flex;
+  position: relative;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  background: rgba(255,255,255,0.9);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 8px;
+  padding: 10px 12px;
+  transition: all 0.2s;
+  z-index: 1;
+}
+
+.dark .sb-search-box {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.sb-search-box:focus-within {
+  border-color: rgba(232,160,60,0.5);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(232,160,60,0.12);
+}
+
+.dark .sb-search-box:focus-within {
+  background: rgba(255,255,255,0.07);
+}
+
+.sb-search-label i {
+  color: rgba(0,0,0,0.35);
+  font-size: 13px;
+}
+
+.dark .sb-search-label i {
+  color: rgba(255,255,255,0.5);
+}
+
+.sb-search-input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: #1e1f21;
+  font-size: 12px;
+  font-family: inherit;
+}
+
+.dark .sb-search-input {
+  color: #fff;
+}
+
+.sb-search-input::placeholder { color: rgba(0,0,0,0.3); }
+
+.dark .sb-search-input::placeholder { color: rgba(255,255,255,0.35); }
+
+/* 4. 섹션 공통 */
+.sb-section-label {
+  color: #c47d1a;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  padding-left: 4px;
+  margin-bottom: 12px;
+}
+
+.dark .sb-section-label {
+  color: rgba(232,160,60,0.85);
+}
+
+/* 5. 카테고리  */
+.sidebar-wrap .link_tit {
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px !important;
+  margin: -8px 0 !important;
+  border-radius: 6px !important;
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(0,0,0,0.07) !important;
+  color: rgba(0,0,0,0.65) !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  margin-bottom: 1 !important;
+  width: 100%;
+  box-sizing: border-box;
+  transition: background 0.15s, color 0.15s;
+}
+
+.dark .sidebar-wrap .link_tit {
+  border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+  color: rgba(255,255,255,0.75) !important;
+}
+
+.sidebar-wrap .link_tit:hover {
+  background: rgba(232,160,60,0.12) !important;
+  color: #1e1f21 !important;
+}
+
+.dark .sidebar-wrap .link_tit:hover {
+  background: rgba(232,160,60,0.18) !important;
+  color: #fff !important;
+}
+
+.sidebar-wrap .link_tit::before {
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 700;
+  content: '\f015';
+  font-size: 11px;
+  color: #e8a03c;
+  flex-shrink: 0;
+}
+
+.sidebar-wrap .tt_category ul {
+  margin-top: 16px !important;         
+}
+
+.sidebar-wrap .category_list li {
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 0;
+  background: transparent !important;
+}
+
+.sidebar-wrap .category_list li:hover {
+  background: transparent !important;
+}
+
+.sidebar-wrap .category_list .link_item {
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px !important;
+  margin: -8px 0 !important;
+  border-radius: 6px !important;
+  color: rgba(0,0,0,0.65) !important;
+  font-size: 12px;
+  width: 100%;
+  box-sizing: border-box;
+  transition: background 0.15s, color 0.15s;
+}
+
+.dark .sidebar-wrap .category_list .link_item {
+  color: rgba(255,255,255,0.75) !important;
+}
+
+.sidebar-wrap .category_list .link_item:hover {
+  background: rgba(232,160,60,0.12) !important;
+  color: #1e1f21 !important;
+  padding: 8px 10px !important;
+  margin: -8px 0 !important;
+  border-radius: 6px !important;
+  display: flex !important;
+  width: 100%;
+}
+
+.dark .sidebar-wrap .category_list .link_item:hover {
+  background: rgba(232,160,60,0.18) !important;
+  color: #fff !important;
+}
+
+.sidebar-wrap .category_list .c_cnt {
+  color: rgba(0,0,0,0.4) !important;
+  font-size: 10px;
+  background: rgba(0,0,0,0.06);
+  padding: 1px 6px;
+  border-radius: 8px;
+  margin-left: 4px;
+}
+
+.dark .sidebar-wrap .category_list .c_cnt {
+  color: rgba(255,255,255,0.4) !important;
+  background: rgba(255,255,255,0.06);
+}
+
+.sidebar-wrap .sub_category_list .link_sub_item {
+  color: rgba(0,0,0,0.45) !important;
+  font-size: 11px;
+}
+
+.dark .sidebar-wrap .sub_category_list .link_sub_item {
+  color: rgba(255,255,255,0.55) !important;
+}
+
+.sidebar-wrap .sub_category_list .link_sub_item:hover {
+  color: #c47d1a !important;
+}
+
+.dark .sidebar-wrap .sub_category_list .link_sub_item:hover {
+  color: #e8a03c !important;
+}
+
+.sidebar-wrap .category_list .link_item {
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
+}
+
+.sidebar-wrap .category_list .c_cnt {
+  margin-left: auto !important;
+}
+
+/* 아이콘들 */
+.sidebar-wrap .category_list .link_item[href*="Data-Science"]::before,
+.sidebar-wrap .category_list .link_item[href*="Data%20Science"]::before,
+.sidebar-wrap .category_list .link_item[href*="DataScience"]::before {
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  content: '\f201';
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  flex-shrink: 0;
+}
+
+.sidebar-wrap .category_list .link_item[href*="Computer-Science"]::before,
+.sidebar-wrap .category_list .link_item[href*="Computer%20Science"]::before,
+.sidebar-wrap .category_list .link_item[href*="ComputerScience"]::before {
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  content: '\f109';
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  flex-shrink: 0;
+}
+
+.sidebar-wrap .category_list .link_item[href*="Web"]::before {
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  content: '\f0ac';
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  flex-shrink: 0;
+}
+
+.sidebar-wrap .category_list .link_item[href*="%ED%9A%8C%EA%B3%A0"]::before,
+.sidebar-wrap .category_list .link_item[href*="회고"]::before {
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  content: '\f518';
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  flex-shrink: 0;
+}
+
+.sidebar-wrap .category_list .link_item[href*="%EC%BD%94%EB%94%A9%ED%85%8C%EC%8A%A4%ED%8A%B8"]::before,
+.sidebar-wrap .category_list .link_item[href*="코딩테스트"]::before {
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  content: '\f121';
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  flex-shrink: 0;
+}
+
+.sidebar-wrap .category_list .link_item[href*="Github"]::before,
+.sidebar-wrap .category_list .link_item[href*="GitHub"]::before {
+  font-family: 'Font Awesome 6 Brands';
+  font-weight: 400;
+  content: '\f09b';
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  flex-shrink: 0;
+}
+
+.sidebar-wrap .category_list .link_item[href*="Project"]::before {
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  content: '\f542';
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  flex-shrink: 0;
+}
+
+.sidebar-wrap .category_list .link_item[href*="Artificial Intelligence"]::before {
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  content: '\f542';
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  flex-shrink: 0;
+}
+
+/* 9. 소셜 */
+.sb-social {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  padding-top: 14px;
+  border-top: 1px solid rgba(0,0,0,0.07);
+}
+
+.dark .sb-social {
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.sb-social-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.04);
+  border: 1px solid rgba(0,0,0,0.07);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(0,0,0,0.5);
+  font-size: 13px;
+  transition: all 0.2s;
+}
+
+.dark .sb-social-btn {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.7);
+}
+
+.sb-social-btn:hover {
+  background: rgba(232,160,60,0.12);
+  border-color: rgba(232,160,60,0.35);
+  color: #c47d1a;
+  transform: translateY(-2px);
+}
+
+.dark .sb-social-btn:hover {
+  background: rgba(232,160,60,0.15);
+  border-color: rgba(232,160,60,0.3);
+  color: #e8a03c;
+}
+
+/* 10. 카피라이트 */
+/* 10. 카피라이트 */
+.sb-copyright {
+  text-align: center;
+  color: rgba(0,0,0,0.3);
+  font-size: 10px;
+}
+
+.dark .sb-copyright {
+  color: rgba(255,255,255,0.3);
+}
+
+.sb-copyright a {
+  color: rgba(0,0,0,0.45);
+  transition: color 0.15s;
+}
+
+.dark .sb-copyright a {
+  color: rgba(255,255,255,0.5);
+}
+
+.sb-copyright a:hover { color: #c47d1a; }
+
+.dark .sb-copyright a:hover { color: #e8a03c; }
+
+/* 코드블럭 CSS End */
