@@ -1,0 +1,325 @@
+﻿/* ============================================================
+  📁 SECTION : 목록 / 아티클 / 페이지네이션 스타일
+  📌 FILE    : src/css/_list-article.css
+  📋 DEPLOY  : style.css → _onboarding.css 아래
+  📝 NOTES   : ── 목록 헤더 (#list .header)
+               ── 포스트 카드 공통 (썸네일, 타이틀, 날짜, 카테고리 뱃지, 요약)
+               ── list 뷰 구분선
+               ── 페이지네이션 (#paging)
+               ── 빈 결과 (#empty)
+               ── 로딩 스피너
+============================================================ *//* ============================================================
+   CATEGORY PAGE OVERRIDE
+   ============================================================ */
+
+@font-face {
+  font-family: 'YPairing';
+  src: url('https://tistory1.daumcdn.net/tistory/8263593/skin/images/YPairingFont-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'YPairing';
+  src: url('https://tistory1.daumcdn.net/tistory/8263593/skin/images/YPairingFont-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── 1. 헤더 ── */
+ 
+#global-header .info {
+  background: #fff;
+  border-bottom: 1px solid #e6e6e9;
+}
+.dark #global-header .info {
+  background: #000;
+  border-bottom-color: rgba(255,255,255,0.08);
+}
+#global-header .info .tit {
+  font-family: 'YPairing', SUIT, sans-serif !important;
+  font-weight: 700 !important;
+  color: #1e1f21 !important;
+  letter-spacing: -0.02em !important;
+}
+.dark #global-header .info .tit {
+  color: #fff !important;
+}
+#global-header .info .desc {
+  color: #e8a03c !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+}
+ 
+/* ── 2. grid/list 공통 — #list ID로 specificity 확보 ── */
+ 
+/* 썸네일 */
+#list .post .content .picture .img {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f4f4f6;
+}
+.dark #list .post .content .picture .img {
+  background: #111;
+}
+#list .post .content .picture .img:has(img.lazyloaded) {
+  outline: 2px solid rgba(232, 160, 60, 0.5);
+}
+.dark #list .post .content .picture .img:has(img.lazyloaded) {
+  outline: none;
+}
+#list .post .content .picture .img .thumb {
+  border-radius: 0 !important;
+  transition: transform 0.4s cubic-bezier(0.22,1,0.36,1) !important;
+}
+#list .post:hover .content .picture .img .thumb {
+  transform: scale(1.04) !important;
+}
+ 
+/* 타이틀 */
+#list .post .content .info .header .tit {
+  font-family: 'YPairing', SUIT, sans-serif !important;
+  font-weight: 700 !important;
+  color: #1e1f21 !important;
+  letter-spacing: -0.01em !important;
+  transition: color 0.15s !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
+}
+/* flex 축소 허용 (반응형 말줄임 대응) */
+#list .post .content .info {
+  min-width: 0;
+}
+#list .post .content .info .header {
+  min-width: 0;
+}
+.dark #list .post .content .info .header .tit {
+  color: #fff !important;
+}
+#list .post:hover .content .info .header .tit {
+  color: #e8a03c !important;
+}
+ 
+/* 날짜·구분자 */
+#list .post .content .info .header .desc .date,
+#list .post .content .info .header .desc .delimiter {
+  color: rgba(0,0,0,0.38) !important;
+  font-size: 0.78rem !important;
+}
+.dark #list .post .content .info .header .desc .date,
+.dark #list .post .content .info .header .desc .delimiter {
+  color: rgba(255,255,255,0.38) !important;
+}
+#list .post .content .info .header .desc .delimiter {
+  opacity: 0.25 !important;
+}
+ 
+/* 카테고리 뱃지 */
+#list .post .content .info .header .desc .category {
+  display: inline-flex !important;
+  align-items: center !important;
+  background: rgba(232,160,60,0.1) !important;
+  color: #c47d1a !important;
+  border: 1px solid rgba(232,160,60,0.25) !important;
+  border-radius: 999px !important;
+  padding: 2px 8px !important;
+  font-size: 0.7rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+}
+.dark #list .post .content .info .header .desc .category {
+  background: rgba(232,160,60,0.08) !important;
+  color: #e8a03c !important;
+  border-color: rgba(232,160,60,0.2) !important;
+}
+/* 지저분해서 숨김처리 */
+#list .post .content .info .header .desc .category {
+  display: none !important;
+}
+ 
+/* 요약 */
+#list .post .content .info .summary {
+  color: rgba(0,0,0,0.45) !important;
+  line-height: 1.8 !important;
+}
+.dark #list .post .content .info .summary {
+  color: rgba(255,255,255,0.4) !important;
+}
+ 
+/* list 뷰 구분선 */
+#list[data-list-style=list] .post {
+  border-top-color: #e6e6e9 !important;
+}
+.dark #list[data-list-style=list] .post {
+  border-top-color: rgba(255,255,255,0.08) !important;
+}
+ 
+/* ── 3. 페이지네이션 ── */
+ 
+#paging {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  margin-top: 3rem;
+}
+#paging i,
+#paging span,
+#paging a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  color: rgba(0,0,0,0.45) !important;
+  transition: background 0.15s, color 0.15s;
+  text-decoration: none;
+}
+.dark #paging i,
+.dark #paging span,
+.dark #paging a {
+  color: rgba(255,255,255,0.45) !important;
+}
+#paging a:hover {
+  background: rgba(232,160,60,0.1);
+  color: #c47d1a !important;
+}
+.dark #paging a:hover {
+  background: rgba(232,160,60,0.12);
+  color: #e8a03c !important;
+}
+#paging .selected {
+  background: #e8a03c !important;
+  color: #fff !important;
+  border-radius: 8px;
+  font-weight: 700;
+}
+.dark #paging .selected {
+  background: #e8a03c !important;
+  color: #000 !important;
+}
+ 
+/* ── 4. 빈 결과 ── */
+ 
+#empty {
+  border-radius: 12px !important;
+  background: #f4f4f6 !important;
+  border: 1px solid #e6e6e9;
+  color: rgba(0,0,0,0.5) !important;
+}
+.dark #empty {
+  background: #111 !important;
+  border-color: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.45) !important;
+}
+#empty .txt {
+  font-family: 'YPairing', SUIT, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1e1f21;
+}
+.dark #empty .txt {
+  color: #fff;
+}
+ 
+/* ── 5. 로딩 스피너 ── */
+ 
+#loader .loading {
+  border-color: rgba(232,160,60,0.15) !important;
+  border-left-color: #e8a03c !important;
+}
+
+[data-list-style=grid] .post .content .picture .img {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f4f4f6;
+}
+
+.dark [data-list-style=grid] .post .content .picture .img {
+  background: #111;
+}
+
+[data-list-style=grid] .post .content .picture .img .thumb {
+  border-radius: 0;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-list-style=grid] .post:hover .content .picture .img .thumb {
+  transform: scale(1.04);
+}
+
+[data-list-style=grid] .post .content .info .header .tit {
+  font-family: 'YPairing', SUIT, sans-serif;
+  font-weight: 700;
+  color: #1e1f21 !important;
+  letter-spacing: -0.01em;
+  transition: color 0.15s;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+/* flex 축소 허용 (반응형 말줄임 대응) */
+[data-list-style=grid] .post .content .info {
+  min-width: 0;
+}
+[data-list-style=grid] .post .content .info .header {
+  min-width: 0;
+}
+
+.dark [data-list-style=grid] .post .content .info .header .tit {
+  color: #fff !important;
+}
+
+[data-list-style=grid] .post:hover .content .info .header .tit {
+  color: #e8a03c !important;
+}
+
+[data-list-style=grid] .post .content .info .header .desc * {
+  color: rgba(0, 0, 0, 0.38) !important;
+  font-size: 0.78rem;
+}
+
+.dark [data-list-style=grid] .post .content .info .header .desc * {
+  color: rgba(255, 255, 255, 0.38) !important;
+}
+
+[data-list-style=grid] .post .content .info .header .desc .category {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(232, 160, 60, 0.1);
+  color: #c47d1a !important;
+  border: 1px solid rgba(232, 160, 60, 0.25);
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-size: 0.7rem !important;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.dark [data-list-style=grid] .post .content .info .header .desc .category {
+  background: rgba(232, 160, 60, 0.08);
+  color: #e8a03c !important;
+  border-color: rgba(232, 160, 60, 0.2);
+}
+
+[data-list-style=grid] .post .content .info .header .desc .delimiter {
+  opacity: 0.25;
+}
+
+[data-list-style=grid] .post .content .info .summary {
+  color: rgba(0, 0, 0, 0.45) !important;
+  line-height: 1.8;
+}
+
+.dark [data-list-style=grid] .post .content .info .summary {
+  color: rgba(255, 255, 255, 0.4) !important;
+}
+
