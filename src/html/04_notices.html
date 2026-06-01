@@ -1,0 +1,103 @@
+﻿<!-- ============================================================
+  📁 SECTION : Tistory 메인 래퍼 + 글로벌 헤더 + 공지 + 방명록
+  📌 FILE    : src/html/04_notices.html
+  📋 DEPLOY  : skin.html → #loader 아래 (s_t3 시작)
+  📝 NOTES   : ① s_t3 + #index + main 래퍼 오픈
+               ② 글로벌 헤더 (카테고리/검색 페이지 타이틀)
+               ③ 태그 클라우드 (s_tag)
+               ④ 공지사항 목록 (s_notice_rep + s_index_article_rep)
+               ⑤ 공지사항 퍼마링크 (s_permalink_article_rep — TOC, 스크롤스파이 포함)
+               ⑥ 방명록 (s_guest)
+============================================================ -->    <s_t3>
+      <div class="pl-0 break-all <s_if_var_sidebar>xl:pl-s</s_if_var_sidebar>" id="index" x-data="{ sidebar: false }">
+        <main class="pb-12 lg:pb-16" id="main"><template x-if="$store.header.show">
+            <header class="mb-10 lg:mb-16" id="global-header" x-ref="globalHeader">
+              <div class="info border-b border-solid border-b-h-300 dark:border-b-h-600 h-h min-h-[theme(spacing.h)] flex flex-col justify-center items-center text-center gap-y-1 text-h-800 dark:text-h-200">
+                <div class="tit font-bold text-3xl" data-empty="검색어가 없어요 :(" x-init="$store.header.title = `[##_page_title_##]`" x-text="$store.header.title"></div><span class="desc font-bold text-sm">[##_title_##]</span>
+              </div>
+            </header>
+          </template>
+          <s_tag>
+            <section class="index-container" id="tag" x-init='$store.header.title = "태그 클라우드"'>
+              <ul class="tags grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
+                <s_tag_rep>
+                  <li class="tag"><a class="link flex items-center justify-center text-sm p-4 text-overflow-hidden text-center rounded-md duration-200 w-full bg-h-200 text-h-500 hover:bg-h-600 hover:text-h-200 dark:text-h-400 dark:bg-h-700 dark:hover:bg-h-600 [##_tag_class_##]" href="[##_tag_link_##]">[##_tag_name_##]</a></li>
+                </s_tag_rep>
+              </ul>
+            </section>
+          </s_tag>
+          <s_notice_rep>
+            <s_index_article_rep>
+              <div class="post"><a class="link" href="[##_notice_rep_link_##]"></a>
+                <div class="content">
+                  <div class="picture">
+                    <s_notice_rep_thumbnail>
+                      <div class="img"><img class="thumb lazyload" data-src="[##_notice_rep_thumbnail_url_##]" data-sizes="auto" alt=""></div>
+                    </s_notice_rep_thumbnail>
+                    <div class="fallback"></div>
+                  </div>
+                  <div class="info">
+                    <div class="header">
+                      <div class="tit">[##_notice_rep_title_##]</div>
+                      <div class="desc"><time class="date">[##_notice_rep_simple_date_##]</time><span class="delimiter">·</span>
+                        <div class="category">공지사항</div>
+                      </div>
+                    </div>
+                    <div class="summary">[##_notice_rep_summary_##]</div>
+                  </div>
+                </div>
+              </div>
+            </s_index_article_rep>
+            <s_permalink_article_rep>
+              <section id="post" x-init="$store.header.show = false">
+                <header class="px-4 mb-10 lg:px-0 lg:mb-16" id="header" x-ref="header" data-header-style="[##_var_header-style_##]">
+                  <s_notice_rep_thumbnail>
+                    <div class='img absolute right-0 top-0 w-full before:content-[""] before:absolute before:right-0 before:top-0 before:w-full before:bg-h-900/20 before:z-10'><img class="thumb absolute right-0 top-0 w-full h-full z-0 object-cover" src="[##_notice_rep_thumbnail_raw_url_##]" alt=""></div>
+                  </s_notice_rep_thumbnail>
+                  <div class="info border-b border-solid border-b-h-300 dark:border-b-h-600 min-h-[theme(spacing.h)] flex flex-col justify-center items-center gap-y-1 relative z-20 text-h-800 dark:text-h-200">
+                    <h1 class="tit text-center font-bold text-3xl max-w-screen-lg">[##_notice_rep_title_##]</h1>
+                    <div class="desc flex gap-x-1 text-sm"><time class="date">[##_notice_rep_date_##]</time><span class="delimiter">·</span><a class="category /notice">공지사항</a></div>
+                  </div>
+                </header>
+                <div class="permalink-container relative" id="content" x-data="content">
+                  <s_if_var_toc><template x-if="$data.headings.length > 0">
+                      <aside class="rounded-md p-5 mb-8 box-border bg-h-200 text-h-500 dark:bg-h-700 dark:text-h-200" id="toc">
+                        <div class="tit flex items-center justify-between text-overflow-hidden text-sm pb-2 mb-4 border-b border-solid border-h-300 dark:border-h-600"><span class="txt text-base">목차</span><i class="ico fas fa-bars"></i></div>
+                        <ol class="tits flex flex-col gap-y-3"><template x-for="heading in $data.headings" :key="heading.id">
+                            <li class="tit" :class='{ "pl-0": heading.tagName === "H2", "pl-4": heading.tagName === "H3" }'><a class="link flex items-center justify-between text-sm duration-200 text-h-400 hover:text-h-600 dark:hover:text-h-200" :href="heading.href">
+                                <div class="txt text-overflow-hidden" x-text="heading.text"></div><i class="ico fas fa-arrow-right scale-75"></i>
+                              </a></li>
+                          </template></ol>
+                      </aside>
+                    </template></s_if_var_toc>
+                  <article id="article" x-ref="article">[##_notice_rep_desc_##]</article>
+                  <s_if_var_scrollspy><template x-if="$data.headings.length > 0">
+                      <aside class="2xl:absolute 2xl:top-0 2xl:h-full 2xl:ml-[calc(((1100px+theme(spacing.pem))/2)+theme(spacing.5))]" id="scrollspy" x-data="scrollspy" @scroll.window="scrollspy" x-transition:enter="transition ease-linear duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-linear duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" x-show="show">
+                        <div class="area 2xl:sticky 2xl:top-20"><button class="open fixed top-20 right-0 w-8 h-8 z-[200] rounded-md bg-h-200 text-h-500 dark:bg-h-700 dark:text-h-200 2xl:hidden" x-show="! open" @click="toggle"><span class="txt text-hidden">목차</span><i class="ico fa-solid fa-list-check"></i></button>
+                          <div class="wrap max-h-[calc(100vh-theme(spacing.20)-theme(spacing.10)-theme(spacing.3)-2rem)] overflow-hidden w-56 text-sm box-border max-2xl:transition-[right] max-2xl:duration-200 max-2xl:rounded-xl max-2xl:fixed max-2xl:top-20 max-2xl:z-[201] max-2xl:bg-h-200 max-2xl:dark:bg-h-700 2xl:block" :class='open ? "max-2xl:right-4" : "max-2xl:-right-60"'>
+                            <div class="spy overflow-x-hidden overflow-y-scroll max-h-[inherit] w-[calc(theme(spacing.56)+theme(spacing.5))]"><button class="close absolute text-base top-3 right-4 text-h-500 dark:text-h-200 2xl:hidden" @click="toggle"><span class="txt text-hidden">목차 닫기</span><i class="ico fa-solid fa-xmark"></i></button>
+                              <ol class="tits flex flex-col gap-y-3 max-2xl:p-6 max-2xl:pt-8 max-2xl:pr-14 2xl:px-8"><template x-for="heading in $data.headings" :key="heading.id">
+                                  <li class="tit" :class='{ "pl-0": heading.tagName === "H2", "pl-4": heading.tagName === "H3" }'><a class="link duration-200" :href="heading.href" x-text="heading.text" :class='heading.active ? "text-h-600 dark:text-h-200" : "text-h-400 hover:text-h-600 dark:hover:text-h-200"'></a></li>
+                                </template></ol>
+                            </div>
+                          </div>
+                        </div>
+                      </aside>
+                    </template></s_if_var_scrollspy>
+                </div>
+                <footer class="permalink-container mb-9" id="footer">
+                  <div class="border-t border-b border-h-300 dark:border-h-600 mt-6 py-8 flex gap-x-5 items-center" id="author"><img class="thumb lazyload rounded-full object-cover w-20 h-20" data-src="[##_image_##]" data-sizes="auto" width="80" height="80" alt="[##_blogger_##]">
+                    <div class="profile flex flex-col gap-y-1">
+                      <div class="blogger text-h-800 dark:text-h-200 font-bold">[##_blogger_##]</div>
+                      <div class="desc leading-7 text-sm text-h-400">[##_desc_##]</div>
+                    </div>
+                  </div>
+                </footer>
+              </section>
+            </s_permalink_article_rep>
+          </s_notice_rep>
+          <s_guest>
+            <section class="permalink-container" id="guestbook" x-init='$store.header.title = "방명록"'>
+              <div id="group">[##_guestbook_group_##]</div>
+            </section>
+          </s_guest>
