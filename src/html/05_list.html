@@ -1,0 +1,38 @@
+﻿<!-- ============================================================
+  📁 SECTION : 글 목록 섹션
+  📌 FILE    : src/html/05_list.html
+  📋 DEPLOY  : skin.html → 방명록(#guestbook) 아래
+  📝 NOTES   : 카테고리/검색 결과 목록 (s_list)
+               썸네일, 제목, 날짜, 카테고리, 요약 포함
+               빈 결과 메시지 (s_list_empty) 포함
+============================================================ -->          <s_list>
+            <section id="list" x-data='{ listStyle: "[##_list_style_##]" }' x-init='$store.header.title = "[##_list_conform_##]"' :data-list-style="listStyle">
+              <s_list_rep>
+                <div class="post"><a class="link" href="[##_list_rep_link_##]"></a>
+                  <div class="content">
+                    <div class="picture">
+                      <s_list_rep_thumbnail>
+                        <div class="img"><img class="thumb lazyload" data-src="[##_list_rep_thumbnail_##]" data-sizes="auto" alt=""></div>
+                      </s_list_rep_thumbnail>
+                      <div class="fallback"></div>
+                    </div>
+                    <div class="info">
+                      <div class="header">
+                        <div class="tit">[##_list_rep_title_##]</div>
+                        <div class="desc"><time class="date">[##_list_rep_regdate_##]</time><span class="delimiter">·</span>
+                          <div class="category">[##_list_rep_category_##]</div>
+                        </div>
+                      </div>
+                      <div class="summary">[##_list_rep_summary_##]</div>
+                    </div>
+                  </div>
+                </div>
+              </s_list_rep>
+              <s_list_empty>
+                <div class="rounded-sm text-center p-6 text-h-800 dark:text-h-200 bg-h-200 dark:bg-h-700" id="empty" x-init='listStyle = "empty"'>
+                  <div class="txt font-bold">게시글을 찾을 수 없습니다.</div>
+                  <div class="desc">검색어를 다시 입력하거나 다른 카테고리로 이동해보세요.</div>
+                </div>
+              </s_list_empty>
+            </section>
+          </s_list>
