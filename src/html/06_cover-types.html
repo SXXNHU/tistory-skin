@@ -1,0 +1,1262 @@
+﻿<!-- ============================================================
+  📁 SECTION : 커버 레이아웃 타입 정의
+  📌 FILE    : src/html/06_cover-types.html
+  📋 DEPLOY  : skin.html → 목록(#list) 아래
+  📝 NOTES   : hELLO 스킨의 모든 커버 타입 템플릿 (일반적으로 직접 수정하지 않음)
+               ─ 이미지형  : list / grid / Z / Z- / N / gallery / slider
+               ─ 픽처형    : picture-1-1-{l,c,r} / picture-2-3-{l,c,r}
+               ─ 텍스트형  : title-{l,c,r}-{3xl,2xl,xl,lg} / title-{l,c,r}
+               ─ 요약형    : title-summary-{1/2,2} / summary-{l,c,r}
+               ─ 버튼/링크 : button-{c,r} / link-{l,c,r}
+               ─ 키워드    : keyword-{l,c,r}
+               ─ 기타      : list-2 / grid-2 / grid-5 / profile / poster / square
+               ─ 여백      : empty-line-{1~5}
+============================================================ -->          <s_cover_group>
+            <section class="flex flex-col gap-y-12 lg:gap-y-16" id="cover" x-init="$store.header.show = false">
+              <s_cover_rep>
+                <s_cover name="list">
+                  <section class="cover flex flex-col items-center" data-cover-name="list">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="list">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="picture">
+                              <s_cover_item_thumbnail>
+                                <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                              </s_cover_item_thumbnail>
+                            </div>
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                                <s_cover_item_article_info>
+                                  <div class="desc"><time class="date">[##_cover_item_simple_date_##]</time><span class="delimiter">·</span>
+                                    <div class="category">[##_cover_item_category_##]</div>
+                                  </div>
+                                </s_cover_item_article_info>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="grid">
+                  <section class="cover flex flex-col items-center" data-cover-name="grid">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="grid">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="picture">
+                              <s_cover_item_thumbnail>
+                                <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                              </s_cover_item_thumbnail>
+                              <div class="fallback"></div>
+                            </div>
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                                <s_cover_item_article_info>
+                                  <div class="desc"><time class="date">[##_cover_item_simple_date_##]</time><span class="delimiter">·</span>
+                                    <div class="category">[##_cover_item_category_##]</div>
+                                  </div>
+                                </s_cover_item_article_info>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="Z">
+                  <section class="cover flex flex-col items-center" data-cover-name="Z">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="Z">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="picture">
+                              <s_cover_item_thumbnail>
+                                <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                              </s_cover_item_thumbnail>
+                              <div class="fallback"></div>
+                            </div>
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                                <s_cover_item_article_info>
+                                  <div class="desc"><time class="date">[##_cover_item_simple_date_##]</time><span class="delimiter">·</span>
+                                    <div class="category">[##_cover_item_category_##]</div>
+                                  </div>
+                                </s_cover_item_article_info>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="gallery">
+                  <section class="cover flex flex-col items-center" data-cover-name="gallery">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="gallery">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="picture">
+                              <s_cover_item_thumbnail>
+                                <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                              </s_cover_item_thumbnail>
+                              <div class="fallback"></div>
+                            </div>
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                                <s_cover_item_article_info>
+                                  <div class="desc"><time class="date">[##_cover_item_simple_date_##]</time><span class="delimiter">·</span>
+                                    <div class="category">[##_cover_item_category_##]</div>
+                                  </div>
+                                </s_cover_item_article_info>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="slider">
+                  <section class="cover flex flex-col items-center" data-cover-name="slider">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts swiper" data-list-style="slider">
+                      <div class="wrap swiper-wrapper">
+                        <s_cover_item>
+                          <div class="post swiper-slide"><a class="link" href="[##_cover_item_url_##]"></a>
+                            <div class="content">
+                              <div class="picture">
+                                <s_cover_item_thumbnail>
+                                  <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                                </s_cover_item_thumbnail>
+                                <div class="fallback"></div>
+                              </div>
+                              <div class="info">
+                                <div class="header">
+                                  <div class="tit">[##_cover_item_title_##]</div>
+                                  <s_cover_item_article_info>
+                                    <div class="desc"><time class="date">[##_cover_item_simple_date_##]</time><span class="delimiter">·</span>
+                                      <div class="category">[##_cover_item_category_##]</div>
+                                    </div>
+                                  </s_cover_item_article_info>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </s_cover_item>
+                      </div>
+                      <div class="next swiper-button-next"></div>
+                      <div class="prev swiper-button-prev"></div>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="empty-line-1">
+                  <section class="cover flex flex-col items-center" data-cover-name="empty-line-1">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="empty-line"></div>
+                  </section>
+                </s_cover>
+                <s_cover name="empty-line-2">
+                  <section class="cover flex flex-col items-center" data-cover-name="empty-line-2">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts py-2" data-list-style="empty-line"></div>
+                  </section>
+                </s_cover>
+                <s_cover name="empty-line-3">
+                  <section class="cover flex flex-col items-center" data-cover-name="empty-line-3">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts py-4" data-list-style="empty-line"></div>
+                  </section>
+                </s_cover>
+                <s_cover name="empty-line-4">
+                  <section class="cover flex flex-col items-center" data-cover-name="empty-line-4">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts py-6" data-list-style="empty-line"></div>
+                  </section>
+                </s_cover>
+                <s_cover name="empty-line-5">
+                  <section class="cover flex flex-col items-center" data-cover-name="empty-line-5">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts py-8" data-list-style="empty-line"></div>
+                  </section>
+                </s_cover>
+                <s_cover name="profile">
+                  <section class="cover flex flex-col items-center" data-cover-name="profile">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="profile">
+                      <s_cover_item>
+                        <div class="post">
+                          <div class="content">
+                            <div class="picture">
+                              <s_cover_item_thumbnail>
+                                <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                              </s_cover_item_thumbnail>
+                            </div>
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                                <s_cover_item_article_info>
+                                  <div class="desc"><time class="date">[##_cover_item_simple_date_##]</time><span class="delimiter">·</span>
+                                    <div class="category">[##_cover_item_category_##]</div>
+                                  </div>
+                                </s_cover_item_article_info>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="poster">
+                  <section class="cover flex flex-col items-center" data-cover-name="poster">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="poster">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="picture">
+                              <s_cover_item_thumbnail>
+                                <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                              </s_cover_item_thumbnail>
+                              <div class="fallback"></div>
+                            </div>
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                                <s_cover_item_article_info>
+                                  <div class="desc"><time class="date">[##_cover_item_simple_date_##]</time><span class="delimiter">·</span>
+                                    <div class="category">[##_cover_item_category_##]</div>
+                                  </div>
+                                </s_cover_item_article_info>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="square">
+                  <section class="cover flex flex-col items-center" data-cover-name="square">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="square">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="picture">
+                              <s_cover_item_thumbnail>
+                                <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                              </s_cover_item_thumbnail>
+                              <div class="fallback"></div>
+                            </div>
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                                <s_cover_item_article_info>
+                                  <div class="desc"><time class="date">[##_cover_item_simple_date_##]</time><span class="delimiter">·</span>
+                                    <div class="category">[##_cover_item_category_##]</div>
+                                  </div>
+                                </s_cover_item_article_info>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="picture-1-1-l">
+                  <section class="cover flex flex-col items-center" data-cover-name="picture-1-1-l">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="picture-1-1">
+                      <s_cover_item>
+                        <div class="post mr-auto cover-content-left"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="picture">
+                              <s_cover_item_thumbnail>
+                                <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                              </s_cover_item_thumbnail>
+                              <div class="fallback"></div>
+                            </div>
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                                <s_cover_item_article_info>
+                                  <div class="desc"><time class="date">[##_cover_item_simple_date_##]</time><span class="delimiter">·</span>
+                                    <div class="category">[##_cover_item_category_##]</div>
+                                  </div>
+                                </s_cover_item_article_info>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="picture-1-1-c">
+                  <section class="cover flex flex-col items-center" data-cover-name="picture-1-1-c">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="picture-1-1">
+                      <s_cover_item>
+                        <div class="post mx-auto cover-content-center"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="picture">
+                              <s_cover_item_thumbnail>
+                                <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                              </s_cover_item_thumbnail>
+                              <div class="fallback"></div>
+                            </div>
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                                <s_cover_item_article_info>
+                                  <div class="desc"><time class="date">[##_cover_item_simple_date_##]</time><span class="delimiter">·</span>
+                                    <div class="category">[##_cover_item_category_##]</div>
+                                  </div>
+                                </s_cover_item_article_info>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="picture-1-1-r">
+                  <section class="cover flex flex-col items-center" data-cover-name="picture-1-1-r">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="picture-1-1">
+                      <s_cover_item>
+                        <div class="post ml-auto cover-content-right"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="picture">
+                              <s_cover_item_thumbnail>
+                                <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                              </s_cover_item_thumbnail>
+                              <div class="fallback"></div>
+                            </div>
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                                <s_cover_item_article_info>
+                                  <div class="desc"><time class="date">[##_cover_item_simple_date_##]</time><span class="delimiter">·</span>
+                                    <div class="category">[##_cover_item_category_##]</div>
+                                  </div>
+                                </s_cover_item_article_info>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="picture-2-3-l">
+                  <section class="cover flex flex-col items-center" data-cover-name="picture-2-3-l">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="picture-2-3">
+                      <s_cover_item>
+                        <div class="post mr-auto cover-content-left"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="picture">
+                              <s_cover_item_thumbnail>
+                                <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                              </s_cover_item_thumbnail>
+                              <div class="fallback"></div>
+                            </div>
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                                <s_cover_item_article_info>
+                                  <div class="desc"><time class="date">[##_cover_item_simple_date_##]</time><span class="delimiter">·</span>
+                                    <div class="category">[##_cover_item_category_##]</div>
+                                  </div>
+                                </s_cover_item_article_info>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="picture-2-3-c">
+                  <section class="cover flex flex-col items-center" data-cover-name="picture-2-3-c">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="picture-2-3">
+                      <s_cover_item>
+                        <div class="post mx-auto cover-content-center"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="picture">
+                              <s_cover_item_thumbnail>
+                                <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                              </s_cover_item_thumbnail>
+                              <div class="fallback"></div>
+                            </div>
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                                <s_cover_item_article_info>
+                                  <div class="desc"><time class="date">[##_cover_item_simple_date_##]</time><span class="delimiter">·</span>
+                                    <div class="category">[##_cover_item_category_##]</div>
+                                  </div>
+                                </s_cover_item_article_info>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="picture-2-3-r">
+                  <section class="cover flex flex-col items-center" data-cover-name="picture-2-3-r">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="picture-2-3">
+                      <s_cover_item>
+                        <div class="post ml-auto cover-content-right"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="picture">
+                              <s_cover_item_thumbnail>
+                                <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                              </s_cover_item_thumbnail>
+                              <div class="fallback"></div>
+                            </div>
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                                <s_cover_item_article_info>
+                                  <div class="desc"><time class="date">[##_cover_item_simple_date_##]</time><span class="delimiter">·</span>
+                                    <div class="category">[##_cover_item_category_##]</div>
+                                  </div>
+                                </s_cover_item_article_info>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="list-2">
+                  <section class="cover flex flex-col items-center" data-cover-name="list-2">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="list-2">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="picture">
+                              <s_cover_item_thumbnail>
+                                <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                              </s_cover_item_thumbnail>
+                            </div>
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="grid-2">
+                  <section class="cover flex flex-col items-center" data-cover-name="grid-2">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="grid-2">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="picture">
+                              <s_cover_item_thumbnail>
+                                <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                              </s_cover_item_thumbnail>
+                              <div class="fallback"></div>
+                            </div>
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                                <s_cover_item_article_info>
+                                  <div class="desc"><time class="date">[##_cover_item_simple_date_##]</time><span class="delimiter">·</span>
+                                    <div class="category">[##_cover_item_category_##]</div>
+                                  </div>
+                                </s_cover_item_article_info>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="N">
+                  <section class="cover flex flex-col items-center" data-cover-name="N">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="N">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="picture">
+                              <s_cover_item_thumbnail>
+                                <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                              </s_cover_item_thumbnail>
+                              <div class="fallback"></div>
+                            </div>
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                                <s_cover_item_article_info>
+                                  <div class="desc"><time class="date">[##_cover_item_simple_date_##]</time><span class="delimiter">·</span>
+                                    <div class="category">[##_cover_item_category_##]</div>
+                                  </div>
+                                </s_cover_item_article_info>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="Z-">
+                  <section class="cover flex flex-col items-center" data-cover-name="Z-">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="Z-">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="picture">
+                              <s_cover_item_thumbnail>
+                                <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                              </s_cover_item_thumbnail>
+                              <div class="fallback"></div>
+                            </div>
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                                <s_cover_item_article_info>
+                                  <div class="desc"><time class="date">[##_cover_item_simple_date_##]</time><span class="delimiter">·</span>
+                                    <div class="category">[##_cover_item_category_##]</div>
+                                  </div>
+                                </s_cover_item_article_info>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="grid-5">
+                  <section class="cover flex flex-col items-center" data-cover-name="grid-5">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="grid-5">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="picture">
+                              <s_cover_item_thumbnail>
+                                <div class="img"><img class="thumb lazyload" data-src="[##_cover_item_thumbnail_##]" data-sizes="auto" alt=""></div>
+                              </s_cover_item_thumbnail>
+                              <div class="fallback"></div>
+                            </div>
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="title-l-3xl">
+                  <section class="cover flex flex-col items-center" data-cover-name="title-l-3xl">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="title-3xl">
+                      <s_cover_item>
+                        <div class="post text-left">
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="title-c-3xl">
+                  <section class="cover flex flex-col items-center" data-cover-name="title-c-3xl">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="title-3xl">
+                      <s_cover_item>
+                        <div class="post text-center">
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="title-r-3xl">
+                  <section class="cover flex flex-col items-center" data-cover-name="title-r-3xl">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="title-3xl">
+                      <s_cover_item>
+                        <div class="post text-right">
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="title-l-2xl">
+                  <section class="cover flex flex-col items-center" data-cover-name="title-l-2xl">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="title-2xl">
+                      <s_cover_item>
+                        <div class="post text-left">
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="title-c-2xl">
+                  <section class="cover flex flex-col items-center" data-cover-name="title-c-2xl">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="title-2xl">
+                      <s_cover_item>
+                        <div class="post text-center">
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="title-r-2xl">
+                  <section class="cover flex flex-col items-center" data-cover-name="title-r-2xl">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="title-2xl">
+                      <s_cover_item>
+                        <div class="post text-right">
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="title-l-xl">
+                  <section class="cover flex flex-col items-center" data-cover-name="title-l-xl">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="title-xl">
+                      <s_cover_item>
+                        <div class="post text-left">
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="title-c-xl">
+                  <section class="cover flex flex-col items-center" data-cover-name="title-c-xl">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="title-xl">
+                      <s_cover_item>
+                        <div class="post text-center">
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="title-r-xl">
+                  <section class="cover flex flex-col items-center" data-cover-name="title-r-xl">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="title-xl">
+                      <s_cover_item>
+                        <div class="post text-right">
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="title-l-lg">
+                  <section class="cover flex flex-col items-center" data-cover-name="title-l-lg">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="title-lg">
+                      <s_cover_item>
+                        <div class="post text-left">
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="title-c-lg">
+                  <section class="cover flex flex-col items-center" data-cover-name="title-c-lg">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="title-lg">
+                      <s_cover_item>
+                        <div class="post text-center">
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="title-r-lg">
+                  <section class="cover flex flex-col items-center" data-cover-name="title-r-lg">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="title-lg">
+                      <s_cover_item>
+                        <div class="post text-right">
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="title-l">
+                  <section class="cover flex flex-col items-center" data-cover-name="title-l">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="title">
+                      <s_cover_item>
+                        <div class="post text-left">
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="title-c">
+                  <section class="cover flex flex-col items-center" data-cover-name="title-c">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="title">
+                      <s_cover_item>
+                        <div class="post text-center">
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="title-r">
+                  <section class="cover flex flex-col items-center" data-cover-name="title-r">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="title">
+                      <s_cover_item>
+                        <div class="post text-right">
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="title-summary-1/2">
+                  <section class="cover flex flex-col items-center" data-cover-name="title-summary-1/2">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="title-summary-1/2">
+                      <s_cover_item>
+                        <div class="post">
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="title-summary-2">
+                  <section class="cover flex flex-col items-center" data-cover-name="title-summary-2">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="title-summary-2">
+                      <s_cover_item>
+                        <div class="post">
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="summary-l">
+                  <section class="cover flex flex-col items-center" data-cover-name="summary-l">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="summary">
+                      <s_cover_item>
+                        <div class="post text-left">
+                          <div class="content">
+                            <div class="info">
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="summary-c">
+                  <section class="cover flex flex-col items-center" data-cover-name="summary-c">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="summary">
+                      <s_cover_item>
+                        <div class="post text-center">
+                          <div class="content">
+                            <div class="info">
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="summary-r">
+                  <section class="cover flex flex-col items-center" data-cover-name="summary-r">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="summary">
+                      <s_cover_item>
+                        <div class="post text-right">
+                          <div class="content">
+                            <div class="info">
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="summary-title-1/2">
+                  <section class="cover flex flex-col items-center" data-cover-name="summary-title-1/2">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts" data-list-style="summary-title-1/2">
+                      <s_cover_item>
+                        <div class="post">
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                              <div class="summary">[##_cover_item_summary_##]</div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="button-l">
+                  <section class="cover flex flex-col items-center" data-cover-name="button-l">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts justify-start" data-list-style="button">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="button-c">
+                  <section class="cover flex flex-col items-center" data-cover-name="button-c">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts justify-center" data-list-style="button">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="button-r">
+                  <section class="cover flex flex-col items-center" data-cover-name="button-r">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts justify-end" data-list-style="button">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="link-l">
+                  <section class="cover flex flex-col items-center" data-cover-name="link-l">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts justify-start" data-list-style="link">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="link-c">
+                  <section class="cover flex flex-col items-center" data-cover-name="link-c">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts justify-center" data-list-style="link">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="link-r">
+                  <section class="cover flex flex-col items-center" data-cover-name="link-r">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts justify-end" data-list-style="link">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="keyword-l">
+                  <section class="cover flex flex-col items-center" data-cover-name="keyword-l">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts justify-start" data-list-style="keyword">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="keyword-c">
+                  <section class="cover flex flex-col items-center" data-cover-name="keyword-c">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts justify-center" data-list-style="keyword">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+                <s_cover name="keyword-r">
+                  <section class="cover flex flex-col items-center" data-cover-name="keyword-r">
+                    <header class="header">
+                      <h1 class="tit h-h min-h-[theme(spacing.h)] flex items-center font-bold text-3xl text-h-800 dark:text-h-200 empty:hidden">[##_cover_title_##]</h1>
+                    </header>
+                    <div class="posts justify-end" data-list-style="keyword">
+                      <s_cover_item>
+                        <div class="post"><a class="link" href="[##_cover_item_url_##]"></a>
+                          <div class="content">
+                            <div class="info">
+                              <div class="header">
+                                <div class="tit">[##_cover_item_title_##]</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </s_cover_item>
+                    </div>
+                  </section>
+                </s_cover>
+              </s_cover_rep>
+            </section>
+          </s_cover_group>
