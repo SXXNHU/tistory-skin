@@ -1,0 +1,119 @@
+﻿<!-- ============================================================
+  📁 SECTION : 사이드바
+  📌 FILE    : src/html/08_sidebar.html
+  📋 DEPLOY  : skin.html → </main> 아래 (aside#sidebar)
+  📝 NOTES   : ① 글로우 데코 (.sidebar-glow)
+               ② 프로필 카드 (아바타, 이름, 상태, 소개)
+               ③ 통계 (Total visits, Days — JS 카운터)
+               ④ 검색 박스 (고양이/발자국 이미지 포함)
+               ⑤ 카테고리 트리 (#category)
+               ⑥ 소셜 링크 (GitHub, RSS, 방명록, 이메일)
+               ⑦ 카피라이트
+               ⑧ 모바일 마스크 오버레이 (x-teleport)
+               📌 이미지 경로: ./images/foot_print.png, ./images/orage_cat.png
+============================================================ -->        <aside class="h-full fixed top-0 w-s overflow-hidden z-[9000] transition-[left] duration-200 p-0 onboarding-sidebar <s_if_var_sidebar>xl:left-0</s_if_var_sidebar>" 
+              id="sidebar" 
+              :class='sidebar ? "left-0" : "-left-[calc(theme(spacing.s))]"'>
+          
+          <!-- 글로우 데코 -->
+          <div class="sidebar-glow"></div>
+          
+          <div class="sidebar-wrap">
+
+            <!-- 1. 프로필 카드 -->
+            <div class="sb-profile-card" @click="window.location.href='/'" style="cursor: pointer;">
+              <div class="sb-profile-head">
+                <div class="sb-avatar-ring" @click.stop="sidebar = false" style="cursor: pointer;">
+                  <img class="sb-avatar" src="[##_image_##]" alt="[##_blogger_##]" />
+                </div>
+                <div class="sb-profile-info">
+                  <div class="sb-name">[##_blogger_##]</div>
+                  <div class="sb-status">
+                    <span class="sb-status-dot"></span>
+                    <span>Backend Developer</span>
+                  </div>
+                </div>
+              </div>
+              <div class="sb-profile-desc">
+                뭐든 잘하고 싶은 개발자의 풀스택 도전기
+              </div>
+            </div>
+
+            <!-- 2. 통계 -->
+            <div class="sb-stats">
+              <div class="sb-stat-item sb-stat-total">
+                <div class="sb-stat-num accent">[##_count_total_##]</div>
+                <div class="sb-stat-label">Total visits</div>
+              </div>
+              <div class="sb-stat-item sb-stat-days">
+                <div class="sb-stat-num" id="sb-days-num">—</div>
+                <div class="sb-stat-label">Days</div>
+              </div>
+            </div>
+
+            <!-- 3. 검색 -->
+            <div class="sb-search">
+              <img src="./images/foot_print.png" class="sb-search-footprint" alt="">
+              <img src="./images/orage_cat.png" class="sb-search-cat" alt="">
+              
+              <search class="sb-search-box">
+                <s_search>
+                  <label class="sb-search-label" for="keyword">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                  </label>
+                  <input class="sb-search-input" id="keyword" autocomplete="off"
+                        name="[##_search_name_##]" value="[##_search_text_##]"
+                        placeholder="Search posts..."
+                        onkeypress="if (event.keyCode == 13) { [##_search_onclick_submit_##] }">
+                </s_search>
+              </search>
+            </div>
+
+
+            <!-- 4. 카테고리 -->
+            <div class="sb-section">
+              <div class="sb-section-label">EXPLORE</div>
+              <div id="category" x-data="category" class="sb-category">
+                [##_category_list_##]
+              </div>
+            </div>
+
+            <!-- 5. 소셜 -->
+            <div class="sb-social">
+              <a href="#" class="sb-social-btn" aria-label="GitHub">
+                <i class="fa-brands fa-github"></i>
+              </a>
+              <a href="[##_rss_url_##]" class="sb-social-btn" aria-label="RSS">
+                <i class="fa-solid fa-rss"></i>
+              </a>
+              <a href="/guestbook" class="sb-social-btn" aria-label="Guestbook">
+                <i class="fa-regular fa-comment"></i>
+              </a>
+              <a href="mailto:#" class="sb-social-btn" aria-label="Email">
+                <i class="fa-solid fa-envelope"></i>
+              </a>
+            </div>
+
+            <!-- 6. 카피라이트 -->
+            <div class="sb-copyright">
+              <small>
+                <a href="https://apdui.tistory.com/5">apDui</a> · Designed By
+                <a href="https://github.com/SXXNHU"> 강선후</a>
+              </small>
+            </div>
+
+          </div>
+          <div class="sidebar-scroll-fade" id="sidebar-scroll-fade"></div>
+
+          <template x-teleport="body">
+            <div class="fixed top-0 left-0 w-screen h-screen bg-h-900/50 backdrop-blur z-[8000] duration-200" 
+                id="mask" x-show="sidebar"
+                x-transition:enter="transition ease-linear duration-300" 
+                x-transition:enter-start="opacity-0" 
+                x-transition:enter-end="opacity-100" 
+                x-transition:leave="transition ease-linear duration-300" 
+                x-transition:leave-start="opacity-100" 
+                x-transition:leave-end="opacity-0" 
+                @click="sidebar = false"></div>
+          </template>
+        </aside>
