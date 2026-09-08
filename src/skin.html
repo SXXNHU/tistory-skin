@@ -1,10 +1,4 @@
 ﻿<!DOCTYPE html>
-<!-- ============================================================
-  📁 SECTION : <head> 태그
-  📋 DEPLOY  : skin.html 최상단 (DOCTYPE ~ </head>)
-  📝 NOTES   : 메타태그, 폰트/아이콘 CDN, 외부 스크립트 링크,
-               스킨 CSS 변수(:root), skinOptions 전역 변수 설정
-============================================================ -->
 <html class="scroll-smooth" id="hELLO" x-data="app" lang="ko">
 
   <head>
@@ -17,9 +11,10 @@
     <link rel="shortcut icon" href="https://apdui.tistory.com//favicon.ico">
     <link rel="alternate" type="application/rss+xml" title="[##_title_##]" href="[##_rss_url_##]">
     <link rel="preconnect" href="//fonts.googleapis.com">
-    <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="//fonts.gstatic.com" crossorigin="">
     <link rel="stylesheet" :href='"//cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"'>
     <link rel="stylesheet" :href='"//fonts.googleapis.com/css2?family=Source+Code+Pro:ital@0;1&display=swap"'>
+    <link rel="stylesheet" :href='"//fonts.googleapis.com/css2?family=Instrument+Serif&family=Dancing+Script:wght@600;700&display=swap"'>
     <link rel="stylesheet" :href='"//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"'>
     <link rel="stylesheet" :href="`//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/${dark ? skinOptions.hljsDark : skinOptions.hljs}.min.css`">
     <script src="./images/bootstrap.js"></script>
@@ -55,247 +50,95 @@
         headerStyle: '[##_var_header-style_##]'
       }
     </script>
-    <script defer src="./images/app.d0c23866e762b0c8e2a7.js"></script>
-    <script defer src="./images/vendor.d0c23866e762b0c8e2a7.js"></script>
+    <script defer src="./images/app.eb03d364cb9ba29e4c38.js"></script>
+    <script defer src="./images/vendor.eb03d364cb9ba29e4c38.js"></script>
     <link rel="stylesheet" href="./style.css">
-    <script defer src="./images/script.tV439QFBvQ4jG3lAjFc6.js"></script>
+    <script defer src="./images/script.KryaOYT4a7oIkLhE7Aeo.js"></script>
     <script defer src="./images/codeblock.js"></script>
   </head>
-<!-- ============================================================
-  📁 SECTION : 온보딩 랜딩 페이지 HTML
-  📋 DEPLOY  : skin.html → <body> 바로 아래, #loader 위
-  📝 NOTES   : 루트('/') 진입 시에만 표시
-               ① 비디오 배경 + 파티클 캔버스
-               ② 히어로 섹션 (뱃지, 타이틀, 타이핑 애니메이션, 스크롤 버튼)
-               ③ SECTION 1: Featured Categories 카드 그리드
-               ④ SECTION 2: Latest Posts (RSS 동적 렌더링 대상)
-               ⑤ 메뉴 오버레이
-============================================================ -->
+
   <body class="overflow-x-hidden bg-h-100 dark:bg-h-800" id="[##_body_id_##]">
-  
-  <!-- ======================================
-    ONBOARDING LANDING PAGE
-  ====================================== -->
-  <div id="onboarding-root">
-
-    <div class="onboarding-video-wrap">
-      <video
-        id="onboarding-bg-video"
-        src="YOUR_VIDEO_URL_HERE.mp4"
-        autoplay muted loop playsinline
-        class="onboarding-video"
-      ></video>
-      <div class="onboarding-overlay"></div>
-      <canvas id="onboarding-particles" class="onboarding-particles"></canvas>
-    </div>
-
-    <section class="onboarding-hero">
-      <div class="onboarding-hero-inner">
-        <div class="onboarding-badge" data-anim="fade-up" style="--delay:0.2s">
-          <span class="onboarding-badge-dot"></span>
-          LIFE IS NOT A SPEED, BUT A DIRECTION
-        </div>
-        <h1 class="onboarding-hero-title" data-anim="fade-up" style="--delay:0.45s">
-          Hello World!
-        </h1>
-        <h2 class="onboarding-hero-subtitle" data-anim="fade-up" style="--delay:0.65s">
-          Let's Get it&nbsp;<span id="onboarding-typing-text" class="onboarding-typing-word"></span><span class="onboarding-cursor">|</span>
-        </h2>
-        <div class="onboarding-hero-divider" data-anim="fade-up" style="--delay:0.85s">
-          <span class="onboarding-quote-icon">"</span>
-        </div>
-        <p class="onboarding-hero-desc" data-anim="fade-up" style="--delay:1s">
-          배움은 이길 때가 아니라, 넘어질 때 온답니다
-        </p>
-        <button class="onboarding-scroll-btn" id="onboarding-enter-btn" data-anim="fade-up" style="--delay:1.2s" aria-label="최신 글 보기">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20">
-            <polyline points="6 9 12 15 18 9"/>
-          </svg>
-        </button>
-        <div class="onboarding-scroll-indicator" id="sidebar-scroll-indicator">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ====== SECTION 1: FEATURED CATEGORIES ====== -->
-    <section class="onboarding-section onboarding-categories">
-      <div class="onboarding-section-inner">
-        <header class="onboarding-section-header">
-          <span class="onboarding-badge">
-            <span class="onboarding-badge-dot"></span>
-            EXPLORE BY TOPIC
-          </span>
-          <h2 class="onboarding-section-title">
-            Featured Categories
-          </h2>
-          <p class="onboarding-section-subtitle">
-            다양한 카테고리를 둘러보세요
-          </p>
-        </header>
-
-        <div class="onboarding-cat-grid">
-          <!-- #1 AWS -->
-          <a href="/category/AWS" class="onboarding-cat-card" data-rank="1">
-            <span class="onboarding-cat-rank">#1</span>
-            <span class="onboarding-cat-dot"></span>
-            <div class="onboarding-cat-icon-wrap">
-              <i class="onboarding-cat-icon fa-brands fa-aws"></i>
-            </div>
-            <div class="onboarding-cat-divider"></div>
-            <h3 class="onboarding-cat-name">AWS</h3>
-            <p class="onboarding-cat-count">34 ARTICLES</p>
-          </a>
-
-          <!-- #2 Linux -->
-          <a href="/category/Linux" class="onboarding-cat-card" data-rank="2">
-            <span class="onboarding-cat-rank">#2</span>
-            <span class="onboarding-cat-dot"></span>
-            <div class="onboarding-cat-icon-wrap">
-              <i class="onboarding-cat-icon fa-brands fa-linux"></i>
-            </div>
-            <div class="onboarding-cat-divider"></div>
-            <h3 class="onboarding-cat-name">Linux</h3>
-            <p class="onboarding-cat-count">39 ARTICLES</p>
-          </a>
-
-          <!-- #3 Node.js -->
-          <a href="/category/Nodejs" class="onboarding-cat-card" data-rank="3">
-            <span class="onboarding-cat-rank">#3</span>
-            <span class="onboarding-cat-dot"></span>
-            <div class="onboarding-cat-icon-wrap">
-              <i class="onboarding-cat-icon fa-brands fa-node-js"></i>
-            </div>
-            <div class="onboarding-cat-divider"></div>
-            <h3 class="onboarding-cat-name">Node.js</h3>
-            <p class="onboarding-cat-count">76 ARTICLES</p>
-          </a>
-
-          <!-- GIT -->
-          <a href="/category/Git" class="onboarding-cat-card">
-            <span class="onboarding-cat-dot"></span>
-            <div class="onboarding-cat-icon-wrap">
-              <i class="onboarding-cat-icon fa-brands fa-git-alt"></i>
-            </div>
-            <div class="onboarding-cat-divider"></div>
-            <h3 class="onboarding-cat-name">GIT</h3>
-            <p class="onboarding-cat-count">20 ARTICLES</p>
-          </a>
-
-          <!-- WEB -->
-          <a href="/category/Web" class="onboarding-cat-card">
-            <span class="onboarding-cat-dot"></span>
-            <div class="onboarding-cat-icon-wrap">
-              <i class="onboarding-cat-icon fa-solid fa-globe"></i>
-            </div>
-            <div class="onboarding-cat-divider"></div>
-            <h3 class="onboarding-cat-name">WEB 지식</h3>
-            <p class="onboarding-cat-count">46 ARTICLES</p>
-          </a>
-
-          <!-- JavaScript -->
-          <a href="/category/JavaScript" class="onboarding-cat-card">
-            <span class="onboarding-cat-dot"></span>
-            <div class="onboarding-cat-icon-wrap">
-              <i class="onboarding-cat-icon fa-brands fa-js"></i>
-            </div>
-            <div class="onboarding-cat-divider"></div>
-            <h3 class="onboarding-cat-name">JavaScript</h3>
-            <p class="onboarding-cat-count">65 ARTICLES</p>
-          </a>
-
-          <!-- CSS -->
-          <a href="/category/CSS" class="onboarding-cat-card">
-            <span class="onboarding-cat-dot"></span>
-            <div class="onboarding-cat-icon-wrap">
-              <i class="onboarding-cat-icon fa-brands fa-css3-alt"></i>
-            </div>
-            <div class="onboarding-cat-divider"></div>
-            <h3 class="onboarding-cat-name">CSS</h3>
-            <p class="onboarding-cat-count">42 ARTICLES</p>
-          </a>
-
-          <!-- VSCode -->
-          <a href="/category/VSCode" class="onboarding-cat-card">
-            <span class="onboarding-cat-dot"></span>
-            <div class="onboarding-cat-icon-wrap">
-              <i class="onboarding-cat-icon fa-solid fa-code"></i>
-            </div>
-            <div class="onboarding-cat-divider"></div>
-            <h3 class="onboarding-cat-name">VSCode</h3>
-            <p class="onboarding-cat-count">26 ARTICLES</p>
-          </a>
-
-          <!-- MySQL -->
-          <a href="/category/MySQL" class="onboarding-cat-card" >
-            <span class="onboarding-cat-dot"></span>
-            <div class="onboarding-cat-icon-wrap">
-              <i class="onboarding-cat-icon fa-solid fa-database"></i>
-            </div>
-            <div class="onboarding-cat-divider"></div>
-            <h3 class="onboarding-cat-name">MySQL</h3>
-            <p class="onboarding-cat-count">33 ARTICLES</p>
-          </a>
-
-          <!-- Bootstrap5 -->
-          <a href="/category/Bootstrap" class="onboarding-cat-card">
-            <span class="onboarding-cat-dot"></span>
-            <div class="onboarding-cat-icon-wrap">
-              <i class="onboarding-cat-icon fa-brands fa-bootstrap"></i>
-            </div>
-            <div class="onboarding-cat-divider"></div>
-            <h3 class="onboarding-cat-name">Bootstrap5</h3>
-            <p class="onboarding-cat-count">13 ARTICLES</p>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ====== SECTION 2: LATEST POSTS ====== -->
-    <section class="onboarding-section onboarding-latest">
-      <div class="onboarding-section-inner">
-        <header class="onboarding-section-header">
-          <span class="onboarding-badge" data-scroll-anim>
-            <span class="onboarding-badge-dot"></span>
-            FRESH FROM THE LAB
-          </span>
-          <h2 class="onboarding-section-title" data-scroll-anim style="--scroll-delay:0.1s">
-            Latest Posts
-          </h2>
-          <p class="onboarding-section-subtitle" data-scroll-anim style="--scroll-delay:0.2s">
-            최신 포스팅을 구경해보세요
-          </p>
-        </header>
-        <div class="onboarding-latest-layout" id="onboarding-latest-posts"></div>
-      </div>
-    </section>
-  </div>
-
-  <!-- 메뉴 오버레이 -->
-  <div class="onboarding-menu-overlay" id="onboarding-menu-overlay"></div>
-
-  <!-- ====== /ONBOARDING LANDING PAGE ====== -->
-<!-- ============================================================
-  📁 SECTION : 로딩 스피너
-  📋 DEPLOY  : skin.html → #onboarding-root 아래, s_t3 위
-  📝 NOTES   : Alpine.js x-show="loading" 으로 제어되는 전체화면 오버레이
-               페이지 최초 진입 시 잠깐 표시 후 자동 소멸
-============================================================ -->    <div class="w-screen h-screen fixed top-0 left-0 z-[10000] flex items-center justify-center bg-h-100 dark:bg-h-800" id="loader" x-show="loading" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
+    <div class="w-screen h-screen fixed top-0 left-0 z-[10000] flex items-center justify-center bg-h-100 dark:bg-h-800" id="loader" x-show="loading" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
       <div class="loading rounded-full w-14 h-14 my-14 mx-auto text-base relative border-2 border-solid border-h-500/20 border-l-h-500 dark:border-h-100/20 dark:border-l-h-100 animate-loading"></div>
     </div>
-<!-- ============================================================
-  📁 SECTION : Tistory 메인 래퍼 + 글로벌 헤더 + 공지 + 방명록
-  📋 DEPLOY  : skin.html → #loader 아래 (s_t3 시작)
-  📝 NOTES   : ① s_t3 + #index + main 래퍼 오픈
-               ② 글로벌 헤더 (카테고리/검색 페이지 타이틀)
-               ③ 태그 클라우드 (s_tag)
-               ④ 공지사항 목록 (s_notice_rep + s_index_article_rep)
-               ⑤ 공지사항 퍼마링크 (s_permalink_article_rep — TOC, 스크롤스파이 포함)
-               ⑥ 방명록 (s_guest)
-============================================================ -->    <s_t3>
-      <div class="pl-0 break-all" :class="skinOptions.sidebar ? 'xl:pl-s' : ''" id="index" x-data="{ sidebar: false }">
+    <s_t3>
+      <div class="pl-0 break-all <s_if_var_sidebar>xl:pl-s</s_if_var_sidebar>" id="index" x-data="{ sidebar: false }">
+
+        <!-- ====== PLEX 랜딩 (루트 경로 전용, Perplexity Blog 스타일) ====== -->
+        <section id="plex-landing" hidden>
+          <div class="plx-wrap">
+
+            <!-- 히어로: 명언 타이포그래피 (접속할 때마다 랜덤 / 목록은 하단 스크립트의 QUOTES 배열 수정) -->
+            <div class="plx-hero">
+              <blockquote class="plx-quote">
+                <p class="plx-quote-en" id="plx-quote-en"></p>
+                <cite class="plx-quote-author" id="plx-quote-author"></cite>
+                <p class="plx-quote-ko" id="plx-quote-ko"></p>
+              </blockquote>
+            </div>
+
+            <!-- 소개: 아래 문구를 자유롭게 수정하세요 (하드코딩 영역) -->
+            <div class="plx-about">
+              <p class="plx-about-label">About</p>
+              <h1 class="plx-about-title">안녕하세요, 기록하는 개발자 <span class="hl">강선후</span>입니다.</h1>
+              <p class="plx-about-desc">
+                금융권 백엔드 개발자를 목표로 Java와 Spring을 파고들고 있습니다.
+                신한DS금융 SW아카데미에서 배우는 것들, 팀 프로젝트에서 넘어지고 일어난 기록,
+                그리고 더 나은 개발 습관에 대한 고민을 이 블로그에 남깁니다.
+              </p>
+            </div>
+
+            <!-- Topics: 칩은 실제 글 카테고리로 자동 생성 -->
+            <div class="plx-topics">
+              <p class="plx-topics-head">
+                Topics
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+                  <path d="M2 8l4-4 4 4"/>
+                </svg>
+              </p>
+              <div class="plx-chips" id="plx-chips">
+                <span class="plx-skel plx-chip-skel"></span>
+                <span class="plx-skel plx-chip-skel"></span>
+                <span class="plx-skel plx-chip-skel"></span>
+                <span class="plx-skel plx-chip-skel"></span>
+              </div>
+              <div class="plx-search">
+                <input type="search" id="plx-search" placeholder="Search articles" aria-label="글 검색">
+              </div>
+            </div>
+
+            <!-- 글 그리드: RSS 2번째 글부터 -->
+            <div class="plx-grid" id="plx-grid"></div>
+
+            <!-- 무한 스크롤 센티널 (로딩 점) -->
+            <div class="plx-sentinel" id="plx-sentinel" hidden aria-hidden="true">
+              <span></span><span></span><span></span>
+            </div>
+
+          </div>
+
+          <!-- 오프블랙 푸터 스트립 -->
+          <footer class="plx-footer">
+            <div class="plx-wrap plx-footer-inner">
+              <a class="plx-mark" href="/">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+                  <path d="M12 2v20M2 12h20M4.9 4.9l14.2 14.2M19.1 4.9L4.9 19.1"/>
+                </svg>
+                apDui
+              </a>
+              <div class="plx-footer-links">
+                <a href="/category">글</a>
+                <a href="/tag">태그</a>
+                <a href="/guestbook">방명록</a>
+                <a href="[##_rss_url_##]">RSS</a>
+                <a href="https://github.com/SXXNHU" target="_blank" rel="noopener">GitHub</a>
+              </div>
+              <p class="plx-footer-copy">&copy; 2026 apDui — 기록: [##_blogger_##]</p>
+            </div>
+          </footer>
+        </section>
+        <!-- ====== /PLEX 랜딩 ====== -->
+
         <main class="pb-12 lg:pb-16" id="main"><template x-if="$store.header.show">
             <header class="mb-10 lg:mb-16" id="global-header" x-ref="globalHeader">
               <div class="info border-b border-solid border-b-h-300 dark:border-b-h-600 h-h min-h-[theme(spacing.h)] flex flex-col justify-center items-center text-center gap-y-1 text-h-800 dark:text-h-200">
@@ -387,13 +230,7 @@
               <div id="group">[##_guestbook_group_##]</div>
             </section>
           </s_guest>
-<!-- ============================================================
-  📁 SECTION : 글 목록 섹션
-  📋 DEPLOY  : skin.html → 방명록(#guestbook) 아래
-  📝 NOTES   : 카테고리/검색 결과 목록 (s_list)
-               썸네일, 제목, 날짜, 카테고리, 요약 포함
-               빈 결과 메시지 (s_list_empty) 포함
-============================================================ -->          <s_list>
+          <s_list>
             <section id="list" x-data='{ listStyle: "[##_list_style_##]" }' x-init='$store.header.title = "[##_list_conform_##]"' :data-list-style="listStyle">
               <s_list_rep>
                 <div class="post"><a class="link" href="[##_list_rep_link_##]"></a>
@@ -424,19 +261,7 @@
               </s_list_empty>
             </section>
           </s_list>
-<!-- ============================================================
-  📁 SECTION : 커버 레이아웃 타입 정의
-  📋 DEPLOY  : skin.html → 목록(#list) 아래
-  📝 NOTES   : hELLO 스킨의 모든 커버 타입 템플릿 (일반적으로 직접 수정하지 않음)
-               ─ 이미지형  : list / grid / Z / Z- / N / gallery / slider
-               ─ 픽처형    : picture-1-1-{l,c,r} / picture-2-3-{l,c,r}
-               ─ 텍스트형  : title-{l,c,r}-{3xl,2xl,xl,lg} / title-{l,c,r}
-               ─ 요약형    : title-summary-{1/2,2} / summary-{l,c,r}
-               ─ 버튼/링크 : button-{c,r} / link-{l,c,r}
-               ─ 키워드    : keyword-{l,c,r}
-               ─ 기타      : list-2 / grid-2 / grid-5 / profile / poster / square
-               ─ 여백      : empty-line-{1~5}
-============================================================ -->          <s_cover_group>
+          <s_cover_group>
             <section class="flex flex-col gap-y-12 lg:gap-y-16" id="cover" x-init="$store.header.show = false">
               <s_cover_rep>
                 <s_cover name="list">
@@ -1685,17 +1510,7 @@
               </s_cover_rep>
             </section>
           </s_cover_group>
-<!-- ============================================================
-  📁 SECTION : 아티클 / 보호된 글 / 일반 페이지 / 페이지네이션
-  📋 DEPLOY  : skin.html → 커버 그룹(#cover) 아래, </main> 포함
-  📝 NOTES   : ① s_article_rep 포스트 퍼마링크
-                  - 썸네일 배경 헤더, TOC(목차), 본문, 스크롤스파이
-                  - 관련글, 태그, 프로필, 이전/다음 글 팝업, 댓글
-               ② s_article_protected 비밀글 비밀번호 입력
-               ③ s_page_rep 일반 페이지 (TOC, 스크롤스파이 포함)
-               ④ s_paging 페이지네이션 (이전/번호/다음)
-               ⑤ /main 닫기 태그
-============================================================ -->          <s_article_rep>
+          <s_article_rep>
             <s_permalink_article_rep>
               <section id="entry">
                 <section id="post" x-init="$store.header.show = false">
@@ -1866,142 +1681,95 @@
             </ul>
           </s_paging>
         </main>
-<!-- ============================================================
-  📁 SECTION : 사이드바
-  📋 DEPLOY  : skin.html → </main> 아래 (aside#sidebar)
-  📝 NOTES   : ① 글로우 데코 (.sidebar-glow)
-               ② 프로필 카드 (아바타, 이름, 상태, 소개)
-               ③ 통계 (Total visits, Days — JS 카운터)
-               ④ 검색 박스 (고양이/발자국 이미지 포함)
-               ⑤ 카테고리 트리 (#category)
-               ⑥ 소셜 링크 (GitHub, RSS, 방명록, 이메일)
-               ⑦ 카피라이트
-               ⑧ 모바일 마스크 오버레이 (x-teleport)
-               📌 이미지 경로: ./images/foot_print.png, ./images/orage_cat.png
-============================================================ -->        <aside class="h-full fixed top-0 w-s overflow-hidden z-[9000] transition-[left] duration-200 p-0 onboarding-sidebar"
+        <aside class="h-full fixed top-0 w-s overflow-hidden z-[9000] transition-[left] duration-200 p-0 <s_if_var_sidebar>xl:left-0</s_if_var_sidebar>"
               id="sidebar"
-              :class='{ "left-0": sidebar, "-left-[calc(theme(spacing.s))]": !sidebar, "xl:left-0": skinOptions.sidebar }'>
-          
-          <!-- 글로우 데코 -->
-          <div class="sidebar-glow"></div>
-          
-          <div class="sidebar-wrap">
+              :class='sidebar ? "left-0" : "-left-[calc(theme(spacing.s))]"'>
 
-            <!-- 1. 프로필 카드 -->
-            <div class="sb-profile-card" @click="window.location.href='/'" style="cursor: pointer;">
-              <div class="sb-profile-head">
-                <div class="sb-avatar-ring" @click.stop="sidebar = false" style="cursor: pointer;">
-                  <img class="sb-avatar" src="[##_image_##]" alt="[##_blogger_##]" />
-                </div>
-                <div class="sb-profile-info">
-                  <div class="sb-name">[##_blogger_##]</div>
-                  <div class="sb-status">
-                    <span class="sb-status-dot"></span>
-                    <span>Backend Developer</span>
-                  </div>
-                </div>
-              </div>
-              <div class="sb-profile-desc">
-                뭐든 잘하고 싶은 개발자의 풀스택 도전기
-              </div>
-            </div>
+          <div class="sb-wrap">
 
-            <!-- 2. 통계 -->
+            <!-- 1. 프로필 -->
+            <a class="sb-home" href="/">
+              <img class="sb-avatar lazyload" data-src="[##_image_##]" data-sizes="auto" alt="[##_blogger_##]" width="44" height="44">
+              <span class="sb-id">
+                <span class="sb-name">[##_blogger_##]</span>
+                <span class="sb-role">[##_desc_##]</span>
+              </span>
+            </a>
+
+            <!-- 1-1. 블로그 통계 -->
             <div class="sb-stats">
-              <div class="sb-stat-item sb-stat-total">
-                <div class="sb-stat-num accent">[##_count_total_##]</div>
-                <div class="sb-stat-label">Total visits</div>
+              <div class="sb-stat">
+                <span class="sb-stat-label">개설일</span>
+                <span class="sb-stat-value" id="sb-since-day">—</span>
               </div>
-              <div class="sb-stat-item sb-stat-days">
-                <div class="sb-stat-num" id="sb-days-num">—</div>
-                <div class="sb-stat-label">Days</div>
+              <div class="sb-stat">
+                <span class="sb-stat-label">방문자 수</span>
+                <span class="sb-stat-value">[##_count_total_##]</span>
               </div>
             </div>
 
-            <!-- 3. 검색 -->
-            <div class="sb-search">
-              <img src="./images/foot_print.png" class="sb-search-footprint" alt="">
-              <img src="./images/orage_cat.png" class="sb-search-cat" alt="">
-              
-              <search class="sb-search-box">
-                <s_search>
-                  <label class="sb-search-label" for="keyword">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                  </label>
+            <!-- 2. 검색 -->
+            <search class="sb-search-area">
+              <s_search>
+                <label class="sb-search" for="keyword">
+                  <i class="fa-solid fa-magnifying-glass"></i>
                   <input class="sb-search-input" id="keyword" autocomplete="off"
                         name="[##_search_name_##]" value="[##_search_text_##]"
-                        placeholder="Search posts..."
+                        placeholder="글 검색"
                         onkeypress="if (event.keyCode == 13) { [##_search_onclick_submit_##] }">
-                </s_search>
-              </search>
-            </div>
+                </label>
+              </s_search>
+            </search>
 
-
-            <!-- 4. 카테고리 -->
-            <div class="sb-section">
-              <div class="sb-section-label">EXPLORE</div>
-              <div id="category" x-data="category" class="sb-category">
+            <!-- 3. 카테고리 -->
+            <nav class="sb-section">
+              <div class="sb-label">카테고리</div>
+              <div id="category" x-data="category">
                 [##_category_list_##]
               </div>
+            </nav>
+
+            <!-- 4. 바로가기 -->
+            <div class="sb-links">
+              <a href="/tag">태그</a>
+              <a href="/guestbook">방명록</a>
+              <a href="[##_rss_url_##]">RSS</a>
+              <a href="https://github.com/SXXNHU" target="_blank" rel="noopener">GitHub</a>
             </div>
 
-            <!-- 5. 소셜 -->
-            <div class="sb-social">
-              <a href="#" class="sb-social-btn" aria-label="GitHub">
-                <i class="fa-brands fa-github"></i>
-              </a>
-              <a href="[##_rss_url_##]" class="sb-social-btn" aria-label="RSS">
-                <i class="fa-solid fa-rss"></i>
-              </a>
-              <a href="/guestbook" class="sb-social-btn" aria-label="Guestbook">
-                <i class="fa-regular fa-comment"></i>
-              </a>
-              <a href="mailto:#" class="sb-social-btn" aria-label="Email">
-                <i class="fa-solid fa-envelope"></i>
-              </a>
-            </div>
-
-            <!-- 6. 카피라이트 -->
-            <div class="sb-copyright">
-              <small>
-                <a href="https://apdui.tistory.com/5">apDui</a> · Designed By
-                <a href="https://github.com/SXXNHU"> 강선후</a>
-              </small>
+            <!-- 5. 방문 통계 + 카피라이트 -->
+            <div class="sb-foot">
+              <div class="sb-copy">
+                <small>© [##_blogger_##] · Designed by <a href="https://github.com/SXXNHU">강선후</a></small>
+              </div>
             </div>
 
           </div>
-          <div class="sidebar-scroll-fade" id="sidebar-scroll-fade"></div>
 
           <template x-teleport="body">
-            <div class="fixed top-0 left-0 w-screen h-screen bg-h-900/50 backdrop-blur z-[8000] duration-200" 
+            <div class="fixed top-0 left-0 w-screen h-screen bg-h-900/50 backdrop-blur z-[8000] duration-200"
                 id="mask" x-show="sidebar"
-                x-transition:enter="transition ease-linear duration-300" 
-                x-transition:enter-start="opacity-0" 
-                x-transition:enter-end="opacity-100" 
-                x-transition:leave="transition ease-linear duration-300" 
-                x-transition:leave-start="opacity-100" 
-                x-transition:leave-end="opacity-0" 
+                x-transition:enter="transition ease-linear duration-300"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+                x-transition:leave="transition ease-linear duration-300"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
                 @click="sidebar = false"></div>
           </template>
         </aside>
-<!-- ============================================================
-  📁 SECTION : 네비게이션 바 (상단 / 하단 / 스크롤 인디케이터)
-  📋 DEPLOY  : skin.html → 사이드바(aside#sidebar) 아래
-               /div(#index 닫기) + s_t3 닫기 태그 까지 포함
-  📝 NOTES   : ① #indicator  — 스크롤 진행 바 (상단 고정, z-[100])
-               ② #top        — 상단 툴바 (프로필 이미지 / 페이지 타이틀 / 구독 버튼)
-                               온보딩 활성 시 메가메뉴 항목 표시 (CSS로 전환)
-               ③ #bottom     — 하단 우측 (다크모드 토글, 상단 이동 버튼)
-============================================================ -->        <aside class="fixed top-0 w-full z-[100]" id="indicator" @scroll.window="$store.indicator.indicate">
+        <aside class="fixed top-0 w-full z-[100]" id="indicator" @scroll.window="$store.indicator.indicate">
           <div class="bar w-0 h-0.5 rounded bg-h-800 dark:bg-h-200" :style='{ width: $store.indicator.scrolled + "%" }'></div>
         </aside>
-        <aside class="w-full box-border px-4 h-14 top-0 fixed flex justify-between items-center z-[90]" :class='[open ? "backdrop-blur bg-h-100/50 dark:bg-h-800/80" : "bg-transparent", skinOptions.sidebar ? "xl:w-c" : ""]' id="top" x-data="top" @scroll.window="toggle">
+        <aside class="w-full box-border px-4 h-14 top-0 fixed flex justify-between items-center z-[90] <s_if_var_sidebar>xl:w-c</s_if_var_sidebar>" id="top" x-data="top" @scroll.window="toggle" :class='open ? "backdrop-blur bg-h-100/50 dark:bg-h-800/80" : "bg-transparent"'>
 
           <!-- 좌측: 프로필 이미지 (사이드바 열기) -->
           <div class="img">
-            <img class="thumb lazyload rounded-full w-9 h-9 cursor-pointer object-cover" @click="sidebar = ! sidebar" data-src="[##_image_##]" data-sizes="auto" alt="[##_blogger_##]" width="36" height="36"
-                :class="[sidebar ? 'opacity-0 pointer-events-none' : 'opacity-100', skinOptions.sidebar ? 'xl:invisible' : '']">          </div>
-          <!-- 중앙: 기본 페이지 타이틀 (온보딩 비활성 시) -->
+            <img class="thumb lazyload rounded-full w-9 h-9 cursor-pointer object-cover <s_if_var_sidebar>xl:invisible</s_if_var_sidebar>" @click="sidebar = ! sidebar" data-src="[##_image_##]" data-sizes="auto" alt="[##_blogger_##]" width="36" height="36"
+                :class="sidebar ? 'opacity-0 pointer-events-none' : 'opacity-100'">
+          </div>
+
+          <!-- 중앙: 페이지 타이틀 -->
           <div class="tit max-w-[calc(80vw-152px)] h-5" id="top-title" x-show="open" x-transition:enter="transition ease-linear duration-100" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-linear duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
             <div class="txt m-0 text-overflow-hidden text-sm font-bold text-h-800 dark:text-h-200">[##_page_title_##]</div>
           </div>
@@ -2017,340 +1785,354 @@
           </div>
 
         </aside>
-        <aside class="flex justify-end px-4 w-full box-border fixed text-sm z-[90] bottom-3" :class="skinOptions.sidebar ? 'xl:w-c' : ''" id="bottom" x-data="bottom">
+        <aside class="flex justify-end px-4 w-full box-border fixed text-sm z-[90] bottom-3 <s_if_var_sidebar>xl:w-c</s_if_var_sidebar>" id="bottom" x-data="bottom">
           <div class="wrap flex gap-x-2.5"><button class="theme btn" @click="toggleTheme"><span class="txt">테마</span><i class="ico fa-solid fa-moon"></i></button><a class="top btn" href="#hELLO"><span class="txt">상단으로</span><i class="ico fa-solid fa-chevron-up"></i></a></div>
         </aside>
       </div>
     </s_t3>
-<!-- ============================================================
-  📁 SECTION : 온보딩 스크립트 (+ </body></html>)
-  📋 DEPLOY  : skin.html → s_t3 닫기 태그 아래 (파일 맨 끝)
-  📝 NOTES   : 루트('/') 진입 여부 확인 후 조건부 실행
-               ① 타이핑 애니메이션 (WORDS 배열 수정으로 커스텀 가능)
-               ② 메가메뉴 열기/닫기 + 오버레이
-               ③ 온보딩 닫기 → 기존 커버 페이지 노출
-               ④ 파티클 캔버스 애니메이션 (40개 파티클)
-               ⑤ 스크롤 진입 애니메이션 (data-scroll-anim)
-               ⑥ 수강 일수 카운터 (START_DATE 수정 필요)
-               ⑦ 히어로 fade-up 애니메이션
-               ⑧ Latest Posts — RSS 파싱 + 동적 렌더링
-               📌 START_DATE = '2025-09-06' 변경 필요
-               📌 비디오 URL: 온보딩 랜딩 페이지 HTML 섹션의 YOUR_VIDEO_URL_HERE.mp4
-============================================================ -->
-    <!-- ====== ONBOARDING SCRIPTS ====== -->
+
+    <!-- ====== PLEX 랜딩 스크립트 ====== -->
     <script>
-      /* =========================================================
-      * 온보딩 메인 로직
-      * - 루트('/') 진입 시에만 실행
-      * - 타이핑 애니메이션 / 메가메뉴 / 파티클 / 온보딩 닫기
-      * ========================================================= */
       (function () {
+        var landing = document.getElementById('plex-landing');
+        if (!landing) return;
 
-        /* ── 루트 페이지 + 온보딩 요소 존재 여부 확인 ── */
-        var isRoot = window.location.pathname === '/';
-        var root   = document.getElementById('onboarding-root');
+        /* 루트 첫 페이지에서만 표시 */
+        var isRoot = location.pathname === '/' && !/[?&]page=/.test(location.search);
+        if (!isRoot) { landing.remove(); return; }
 
-        if (!isRoot || !root) {
-          if (root) root.remove();
-          return;
-        }
+        landing.removeAttribute('hidden');
+        document.documentElement.classList.add('plx-active');
 
-        /* ── 페이지 진입: #main 숨기고 온보딩 표시 ── */
-        document.body.classList.add('onboarding-active');
+        var CONFIG = {
+          RSS_URL: location.origin + '/rss',   /* 폴백용 */
+          PAGE_SIZE: 12,                        /* 무한 스크롤 1회 표시 개수 */
+          MAX_PAGES: 50                         /* 백그라운드 페이지 수집 안전 상한 */
+        };
 
-        /* =========================================================
-        * 1. 타이핑 애니메이션
-        * ========================================================= */
-        var WORDS   = ['Java', 'Python', 'Spring', 'Node.js', 'DevOps', 'Backend', 'Algorithm'];
-        var TYPING  = 110;   // 타이핑 딜레이 (ms)
-        var DELETE  = 60;    // 삭제 딜레이 (ms)
-        var PAUSE_A = 1600;  // 단어 완성 후 대기
-        var PAUSE_B = 300;   // 다음 단어 전 대기
+        /* ── 명언 목록 (하드코딩: 자유롭게 수정하세요) ── */
+        var QUOTES = [
+          { en: 'Stay hungry, stay foolish.', by: 'Steve Jobs', ko: '늘 갈망하고, 우직하게 나아가라.' },
+          { en: 'Talk is cheap. Show me the code.', by: 'Linus Torvalds', ko: '말은 쉽다. 코드를 보여달라.' },
+          { en: 'First, solve the problem. Then, write the code.', by: 'John Johnson', ko: '먼저 문제를 풀어라. 코드는 그 다음이다.' },
+          { en: 'Simplicity is the soul of efficiency.', by: 'Austin Freeman', ko: '단순함은 효율의 영혼이다.' },
+          { en: 'Make it work, make it right, make it fast.', by: 'Kent Beck', ko: '일단 돌아가게 하고, 올바르게 만들고, 빠르게 만들어라.' },
+          { en: 'The only way to learn a new programming language is by writing programs in it.', by: 'Dennis Ritchie', ko: '새로운 언어를 배우는 유일한 방법은 그 언어로 프로그램을 직접 짜보는 것이다.' },
+          { en: 'Programs must be written for people to read.', by: 'Harold Abelson', ko: '프로그램은 사람이 읽을 수 있도록 쓰여야 한다.' },
+          { en: 'Live as if you were to die tomorrow. Learn as if you were to live forever.', by: 'Mahatma Gandhi', ko: '내일 죽을 것처럼 살고, 영원히 살 것처럼 배워라.' },
+          { en: 'An investment in knowledge pays the best interest.', by: 'Benjamin Franklin', ko: '지식에 대한 투자가 가장 큰 이자를 낳는다.' },
+          { en: 'I have not failed. I\u2019ve just found 10,000 ways that won\u2019t work.', by: 'Thomas Edison', ko: '나는 실패한 것이 아니다. 되지 않는 방법 만 가지를 찾아냈을 뿐이다.' }
+        ];
 
-        var wordEl   = document.getElementById('onboarding-typing-text');
-        var wordIdx  = 0;
-        var charIdx  = 0;
-        var deleting = false;
+        var GRID = document.getElementById('plx-grid');
+        var CHIPS = document.getElementById('plx-chips');
+        var SEARCH = document.getElementById('plx-search');
+        var SENTINEL = document.getElementById('plx-sentinel');
+        var THUMB_CLASSES = ['plx-t-a', 'plx-t-b', 'plx-t-c', 'plx-t-d', 'plx-t-e', 'plx-t-f'];
 
-        function typeStep() {
-          if (!wordEl) return;
+        var state = {
+          posts: [],                    /* 수집된 전체 글 (검색 대상) */
+          filter: '전체',
+          query: '',
+          visible: CONFIG.PAGE_SIZE,    /* 무한 스크롤 창 크기 */
+          loadedAll: false              /* 전체 페이지 수집 완료 여부 */
+        };
+        var seen = {};                  /* 링크 기준 중복 방지 */
 
-          var word = WORDS[wordIdx];
-
-          if (!deleting) {
-            /* 타이핑 */
-            wordEl.textContent = word.slice(0, ++charIdx);
-            if (charIdx === word.length) {
-              deleting = true;
-              setTimeout(typeStep, PAUSE_A);
-              return;
-            }
-            setTimeout(typeStep, TYPING + Math.random() * 40);
-          } else {
-            /* 삭제 */
-            wordEl.textContent = word.slice(0, --charIdx);
-            if (charIdx === 0) {
-              deleting = false;
-              wordIdx  = (wordIdx + 1) % WORDS.length;
-              setTimeout(typeStep, PAUSE_B);
-              return;
-            }
-            setTimeout(typeStep, DELETE + Math.random() * 20);
-          }
-        }
-
-        if (wordEl) {
-          /* 첫 단어를 완성된 상태로 시작 후 삭제 애니메이션 진행 */
-          wordEl.textContent = WORDS[0];
-          charIdx  = WORDS[0].length;
-          deleting = true;
-          setTimeout(typeStep, PAUSE_A);
-        }
-
-
-        /* =========================================================
-        * 2. 메가메뉴
-        * ========================================================= */
-        var navItems = document.querySelectorAll('.onboarding-nav-item');
-        var overlay  = document.getElementById('onboarding-menu-overlay');
-        var activeItem = null;
-
-        function closeMenu() {
-          if (activeItem) activeItem.classList.remove('active');
-          activeItem = null;
-          if (overlay) overlay.classList.remove('active');
-        }
-
-        navItems.forEach(function (item) {
-          item.querySelector('.onboarding-nav-btn').addEventListener('click', function (e) {
-            e.stopPropagation();
-
-            /* 같은 항목 클릭 시 토글 */
-            if (item === activeItem) {
-              closeMenu();
-              return;
-            }
-
-            if (activeItem) activeItem.classList.remove('active');
-            item.classList.add('active');
-            activeItem = item;
-            overlay.classList.add('active');
-          });
-        });
-
-        if (overlay) overlay.addEventListener('click', closeMenu);
-        document.addEventListener('keydown', function (e) {
-          if (e.key === 'Escape') closeMenu();
-        });
-
-
-        /* =========================================================
-        * 3. 온보딩 닫기 → 기존 커버 페이지 노출
-        * ========================================================= */
-        function scrollToNext() {
-          var next = document.querySelector('.onboarding-section');
-          if (next) next.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-        var enterBtn = document.getElementById('onboarding-enter-btn');
-
-
-        /* =========================================================
-        * 4. 파티클 애니메이션 (Canvas)
-        * ========================================================= */
-        var canvas = document.getElementById('onboarding-particles');
-
-        if (canvas && canvas.getContext) {
-          var ctx = canvas.getContext('2d');
-          var W, H;
-
-          function resizeCanvas() {
-            W = canvas.width  = window.innerWidth;
-            H = canvas.height = window.innerHeight;
-          }
-          resizeCanvas();
-          window.addEventListener('resize', resizeCanvas);
-
-          /* 파티클 초기 생성 */
-          var particles = Array.from({ length: 40 }, function () {
-            return {
-              x  : Math.random() * 1920,
-              y  : Math.random() * 1080,
-              r  : Math.random() * 1.4 + 0.3,
-              vx : (Math.random() - 0.5) * 0.3,
-              vy : (Math.random() - 0.5) * 0.3,
-              a  : Math.random() * 0.4 + 0.1,
-            };
-          });
-
-          /* 렌더 루프 */
-          (function draw() {
-            ctx.clearRect(0, 0, W, H);
-
-            particles.forEach(function (p) {
-              ctx.beginPath();
-              ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-              ctx.fillStyle = 'rgba(255,255,255,' + p.a + ')';
-              ctx.fill();
-
-              p.x += p.vx;
-              p.y += p.vy;
-
-              /* 화면 경계 wrap-around */
-              if (p.x < 0) p.x = W;  else if (p.x > W) p.x = 0;
-              if (p.y < 0) p.y = H;  else if (p.y > H) p.y = 0;
-            });
-
-            requestAnimationFrame(draw);
-          })();
-        }
-
-      })();
-
-      /* =========================================================
-      * 6. 수강 일수 카운터
-      * ========================================================= */
-      (function () {
-        var START_DATE = new Date('2025-09-06');
-        var today      = new Date();
-        var days       = Math.floor((today - START_DATE) / (1000 * 60 * 60 * 24)) + 1;
-
-        var el = document.getElementById('sb-days-num');
-        if (el) el.textContent = '+' + days;
-      })();
-
-
-      /* ── 8. Latest Posts: 서버사이드 대표이미지 데이터 → 동적 렌더링 ── */
-      (function () {
-        var container = document.getElementById('onboarding-latest-posts');
-        if (!container) return;
-
-        /* RSS 파싱으로 최신 포스트 로드 */
-        var BLOG_URL = window.location.origin;
-        container.innerHTML =
-          '<div class="onboarding-posts-loading">' +
-            '<span></span><span></span><span></span>' +
-          '</div>';
-
-        fetch(BLOG_URL + '/rss')
-          .then(function (res) { return res.text(); })
-          .then(function (xmlText) {
-            var parser = new DOMParser();
-            var xml    = parser.parseFromString(xmlText, 'text/xml');
-            var items  = Array.from(xml.querySelectorAll('item')).slice(0, 4);
-            if (!items.length) { container.innerHTML = ''; return; }
-
-            var posts = items.map(function (item) {
-              var linkNode = item.querySelector('link');
-              var link = (
-                (linkNode && linkNode.nextSibling && linkNode.nextSibling.nodeValue) ||
-                (linkNode && linkNode.textContent) || ''
-              ).trim();
-
-              var title    = (item.querySelector('title')?.textContent    || '').trim();
-              var category = (item.querySelector('category')?.textContent || '').trim();
-              var dateRaw  = (item.querySelector('pubDate')?.textContent  || '').trim();
-              var descRaw  = (item.querySelector('description')?.textContent || '');
-
-              var dateStr = '';
-              try {
-                var d = new Date(dateRaw);
-                dateStr = d.getFullYear() + '.' +
-                  String(d.getMonth() + 1).padStart(2, '0') + '.' +
-                  String(d.getDate()).padStart(2, '0');
-              } catch (e) {}
-
-              var thumb = '';
-              var m1 = descRaw.match(/data-url=["']([^"']+blog\.kakaocdn\.net[^"']+)["']/i);
-              if (m1) thumb = m1[1];
-              if (!thumb) {
-                var m2 = descRaw.match(/<img[^>]+src=["'](https?:\/\/[^"']*(blog\.kakaocdn\.net|img\d*\.daumcdn\.net)[^"']+)["']/i);
-                if (m2) thumb = m2[1];
-              }
-              if (!thumb) {
-                var m3 = descRaw.match(/<img[^>]+src=["'](https?:\/\/[^"']+\.(?:jpg|jpeg|png|gif|webp))["']/i);
-                if (m3) thumb = m3[1];
-              }
-              if (thumb && thumb.startsWith('//')) thumb = 'https:' + thumb;
-              if (thumb && thumb.startsWith('/'))  thumb = BLOG_URL + thumb;
-
-              var tmp = document.createElement('div');
-              tmp.innerHTML = descRaw;
-              var summary = (tmp.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 150);
-
-              return { title: title, link: link, category: category,
-                       date: dateStr, thumb: thumb, summary: summary };
-            });
-
-            renderLatest(posts, container);
-          })
-          .catch(function () { container.innerHTML = ''; });
-
-        /* ── 렌더링 ── */
-        function renderLatest(posts, el) {
-          var f = posts[0];
-          var sides = posts.slice(1);
-
-          el.innerHTML =
-            /* Featured */
-            '<a href="' + f.link + '" class="onboarding-featured-post">' +
-              (f.thumb
-                ? '<img class="onboarding-featured-thumb lazyload" data-src="' + f.thumb + '" data-sizes="auto" alt="">'
-                : '<div class="onboarding-featured-thumb-fallback"></div>') +
-              '<div class="onboarding-featured-overlay"></div>' +
-              '<div class="onboarding-featured-content">' +
-                (f.category
-                  ? '<span class="onboarding-featured-category">' + esc(f.category) + '</span>'
-                  : '') +
-                '<h3 class="onboarding-featured-title">' + esc(f.title) + '</h3>' +
-                (f.summary
-                  ? '<p class="onboarding-featured-summary">' + esc(f.summary) + '…</p>'
-                  : '') +
-                '<div class="onboarding-featured-meta">' +
-                  '<time>' + f.date + '</time>' +
-                '</div>' +
-              '</div>' +
-            '</a>' +
-
-            /* Side Posts */
-            '<div class="onboarding-side-posts">' +
-              sides.map(function (p, i) {
-                return (
-                  '<a href="' + p.link + '" class="onboarding-side-post">' +
-                    '<div class="onboarding-side-post-info">' +
-                      (p.category
-                        ? '<span class="onboarding-side-category">' + esc(p.category) + '</span>'
-                        : '') +
-                      '<h4 class="onboarding-side-title">' + esc(p.title) + '</h4>' +
-                      '<div class="onboarding-side-meta">' +
-                        '<time>' + p.date + '</time>' +
-                      '</div>' +
-                    '</div>' +
-                    '<div class="onboarding-side-thumb-wrap">' +
-                      (p.thumb
-                        ? '<img class="onboarding-side-thumb lazyload"' +
-                          ' data-src="' + p.thumb + '" data-sizes="auto" alt="">'
-                        : '<div class="onboarding-side-thumb-fallback"></div>') +
-                    '</div>' +
-                  '</a>'
-                );
-              }).join('') +
-            '</div>';
-
-          /* lazysizes 재트리거 */
-          if (window.lazySizes) window.lazySizes.autoSizer.checkElems();
-        }
-
-        /* XSS 방지 */
+        /* ── 유틸 ── */
         function esc(str) {
           return String(str)
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;');
+            .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        function fmtDate(raw) {
+          var d = new Date(raw);
+          if (isNaN(d)) return '';
+          return d.getFullYear() + '. ' + (d.getMonth() + 1) + '. ' + d.getDate() + '.';
+        }
+
+        function normalizeDate(raw) {
+          var m = String(raw || '').match(/(\d{4})\D+(\d{1,2})\D+(\d{1,2})/);
+          return m ? m[1] + '. ' + Number(m[2]) + '. ' + Number(m[3]) + '.' : String(raw || '').trim();
+        }
+
+        function truncate(text, limit) {
+          text = String(text || '').replace(/\s+/g, ' ').trim();
+          return text.length > limit ? text.slice(0, limit) + '\u2026' : text;
+        }
+
+        function extractThumb(desc) {
+          var m =
+            desc.match(/data-url=["']([^"']*blog\.kakaocdn\.net[^"']+)["']/i) ||
+            desc.match(/<img[^>]+src=["'](https?:\/\/[^"']*blog\.kakaocdn\.net[^"']+)["']/i) ||
+            desc.match(/<img[^>]+src=["'](https?:\/\/[^"']+\.(?:jpg|jpeg|png|gif|webp)[^"']*)["']/i);
+          var url = m ? m[1] : '';
+          if (!url) {
+            var m2 = desc.match(/scrap\.kakaocdn\.net[^"'?]+\.(?:jpg|jpeg|png|gif|webp)/i);
+            if (m2) url = 'https://' + m2[0];
+          }
+          if (url && url.indexOf('//') === 0) url = 'https:' + url;
+          return url || null;
+        }
+
+        /* ── 소스 1: 티스토리가 렌더링한 글 목록(#main #list)에서 수확.
+              [##_list_rep_thumbnail_##] 기반이라 "진짜 대표 이미지" 사용 ── */
+        function harvestFromDoc(doc) {
+          var nodes = doc.querySelectorAll('#main #list .post');
+          return Array.prototype.slice.call(nodes).map(function (el) {
+            var q = function (sel) { return el.querySelector(sel); };
+            var linkEl = q('a.link');
+            var thumbEl = q('.picture .img .thumb');
+            var titleEl = q('.info .header .tit');
+            var dateEl = q('.info .header .desc .date');
+            var catEl = q('.info .header .desc .category');
+            var sumEl = q('.info .summary');
+            return {
+              title: titleEl ? titleEl.textContent.trim() : '',
+              link: linkEl ? linkEl.getAttribute('href') : '',
+              category: catEl ? catEl.textContent.trim() : '',
+              date: normalizeDate(dateEl ? dateEl.textContent : ''),
+              summary: truncate(sumEl ? sumEl.textContent : '', 110),
+              thumb: thumbEl
+                ? (thumbEl.getAttribute('data-src') || thumbEl.getAttribute('src') || null)
+                : null
+            };
+          }).filter(function (p) { return p.title && p.link; });
+        }
+
+        /* ── 소스 2 (폴백): RSS ── */
+        function parseRss(xmlText) {
+          var xml = new DOMParser().parseFromString(xmlText, 'text/xml');
+          if (xml.querySelector('parsererror') || !xml.querySelectorAll('item').length) {
+            xml = new DOMParser().parseFromString(xmlText, 'text/html');
+          }
+          var items = Array.prototype.slice.call(xml.querySelectorAll('item'), 0, 50);
+          return items.map(function (item) {
+            var linkNode = item.querySelector('link');
+            var link = linkNode ? (linkNode.textContent || '').trim() : '';
+            if (!link && linkNode && linkNode.nextSibling && linkNode.nextSibling.nodeType === 3) {
+              link = (linkNode.nextSibling.nodeValue || '').trim();
+            }
+            var get = function (sel) {
+              var node = item.querySelector(sel);
+              return node ? node.textContent : '';
+            };
+            var desc = get('description');
+            return {
+              title: get('title').trim(),
+              link: link,
+              category: get('category').split('/').pop().trim(),
+              date: fmtDate(get('pubDate')),
+              summary: truncate(desc.replace(/<[^>]*>/g, ' '), 110),
+              thumb: extractThumb(desc)
+            };
+          }).filter(function (p) { return p.title && p.link; });
+        }
+
+        /* ── 명언 렌더 (접속마다 랜덤) ── */
+        function renderQuote() {
+          var q = QUOTES[Math.floor(Math.random() * QUOTES.length)];
+          document.getElementById('plx-quote-en').textContent = '\u201C' + q.en + '\u201D';
+          document.getElementById('plx-quote-author').textContent = q.by;
+          document.getElementById('plx-quote-ko').textContent = q.ko;
+        }
+
+        /* ── 필터·검색 (수집된 전체 글 대상) ── */
+        function isFiltering() {
+          return state.filter !== '전체' || state.query.trim() !== '';
+        }
+
+        function filteredPosts() {
+          var q = state.query.trim().toLowerCase();
+          return state.posts.filter(function (p) {
+            var okCat = state.filter === '전체' || p.category === state.filter;
+            var okQuery = !q || p.title.toLowerCase().indexOf(q) !== -1;
+            return okCat && okQuery;
+          });
+        }
+
+        /* ── 렌더링 ── */
+        function cardHTML(p, i) {
+          var thumb = p.thumb
+            ? '<div class="plx-thumb"><img src="' + esc(p.thumb) + '" alt="" loading="lazy"></div>'
+            : '<div class="plx-thumb ' + THUMB_CLASSES[i % THUMB_CLASSES.length] + '"></div>';
+          return (
+            '<a class="plx-post" href="' + esc(p.link) + '">' +
+              thumb +
+              '<h2>' + esc(p.title) + '</h2>' +
+              '<time>' + esc(p.date) + '</time>' +
+            '</a>'
+          );
+        }
+
+        function renderGrid() {
+          var list = filteredPosts();
+          /* 검색·필터 중엔 결과 전체, 기본 상태에선 무한 스크롤 창 크기만큼 */
+          var windowed = isFiltering() ? list : list.slice(0, state.visible);
+
+          if (!windowed.length) {
+            GRID.innerHTML = state.loadedAll
+              ? '<p class="plx-notice">조건에 맞는 글이 없습니다.</p>'
+              : '<p class="plx-notice">글을 불러오는 중입니다\u2026</p>';
+          } else {
+            GRID.innerHTML = windowed.map(cardHTML).join('');
+          }
+
+          /* 센티널: 더 보여줄 글이 남았거나 백그라운드 수집이 진행 중이면 표시 */
+          var hasMore = (!isFiltering() && windowed.length < list.length) || !state.loadedAll;
+          SENTINEL.hidden = !hasMore;
+        }
+
+        function renderChips() {
+          var cats = [];
+          state.posts.forEach(function (p) {
+            if (p.category && cats.indexOf(p.category) === -1) cats.push(p.category);
+          });
+          var all = ['전체'].concat(cats.slice(0, 9));
+          CHIPS.innerHTML = all.map(function (c) {
+            return '<button class="plx-chip' + (c === state.filter ? ' is-active' : '') +
+                   '" data-cat="' + esc(c) + '">' + esc(c) + '</button>';
+          }).join('');
+        }
+
+        function renderGridSkeleton(count) {
+          var html = '';
+          for (var i = 0; i < count; i++) {
+            html +=
+              '<div class="plx-post" aria-hidden="true">' +
+                '<div class="plx-thumb plx-skel-thumb"></div>' +
+                '<h2><span class="plx-skel" style="width: 78%"></span></h2>' +
+                '<time><span class="plx-skel" style="width: 90px"></span></time>' +
+              '</div>';
+          }
+          GRID.innerHTML = html;
+        }
+
+        function renderError() {
+          CHIPS.innerHTML = '';
+          SENTINEL.hidden = true;
+          GRID.innerHTML = '<p class="plx-notice">글 목록을 불러오지 못했습니다. 잠시 후 새로고침해 주세요.</p>';
+        }
+
+        /* ── 데이터 축적 ── */
+        function addPosts(posts) {
+          var added = posts.filter(function (p) {
+            if (seen[p.link]) return false;
+            seen[p.link] = true;
+            return true;
+          });
+          if (added.length) {
+            state.posts = state.posts.concat(added);
+            renderChips();
+            renderGrid();
+          }
+          return added.length;
+        }
+
+        /* 백그라운드로 모든 페이지를 순차 수집 → 전체 글 검색 + 무한 스크롤 데이터 확보 */
+        function collectPage(n) {
+          if (n > CONFIG.MAX_PAGES) {
+            state.loadedAll = true;
+            renderGrid();
+            return;
+          }
+          fetch(location.origin + '/?page=' + n)
+            .then(function (res) {
+              if (!res.ok) throw new Error('page ' + n + ' ' + res.status);
+              return res.text();
+            })
+            .then(function (html) {
+              var doc = new DOMParser().parseFromString(html, 'text/html');
+              var added = addPosts(harvestFromDoc(doc));
+              if (added === 0) {
+                /* 새 글이 없으면 마지막 페이지 도달 */
+                state.loadedAll = true;
+                renderGrid();
+                return;
+              }
+              setTimeout(function () { collectPage(n + 1); }, 250);
+            })
+            .catch(function (err) {
+              console.error('[plx-landing] 페이지 수집 중단:', err);
+              state.loadedAll = true;
+              renderGrid();
+            });
+        }
+
+        function loadFromRss() {
+          fetch(CONFIG.RSS_URL)
+            .then(function (res) {
+              if (!res.ok) throw new Error('RSS ' + res.status);
+              return res.text();
+            })
+            .then(function (xmlText) {
+              var posts = parseRss(xmlText);
+              if (!posts.length) throw new Error('RSS empty');
+              state.loadedAll = true;
+              addPosts(posts);
+              renderGrid();
+            })
+            .catch(function (err) {
+              console.error('[plx-landing] RSS 로드 실패:', err);
+              renderError();
+            });
+        }
+
+        /* ── 무한 스크롤: 센티널 관찰 ── */
+        if ('IntersectionObserver' in window) {
+          var io = new IntersectionObserver(function (entries) {
+            if (!entries[0].isIntersecting) return;
+            if (!isFiltering()) {
+              state.visible += CONFIG.PAGE_SIZE;
+              renderGrid();
+            }
+          }, { rootMargin: '600px 0px' });
+          io.observe(SENTINEL);
+        } else {
+          /* 미지원 브라우저: 창 크기 제한 없이 전부 표시 */
+          state.visible = Infinity;
+        }
+
+        /* ── 이벤트 ── */
+        CHIPS.addEventListener('click', function (e) {
+          var btn = e.target.closest('.plx-chip');
+          if (!btn) return;
+          state.filter = btn.dataset.cat;
+          renderChips();
+          renderGrid();
+        });
+
+        SEARCH.addEventListener('input', function () {
+          state.query = SEARCH.value;
+          renderGrid();
+        });
+
+        /* ── 시작 ── */
+        renderQuote();
+        renderGridSkeleton(6);
+
+        var first = harvestFromDoc(document);
+        if (first.length) {
+          addPosts(first);          /* 1페이지: 이미 렌더링된 목록에서 즉시 수확 */
+          collectPage(2);           /* 2페이지부터 백그라운드 수집 */
+        } else {
+          loadFromRss();            /* 목록이 없는 환경(홈 커버 사용 등): RSS 폴백 */
         }
       })();
     </script>
-    
-    <!-- ====== /ONBOARDING SCRIPTS ====== -->
+    <!-- ====== /PLEX 랜딩 스크립트 ====== -->
+
+    <!-- ====== 사이드바 개설일 D+ 계산 ====== -->
+    <script>
+      (function () {
+        var el = document.getElementById('sb-since-day');
+        if (!el) return;
+        var START_DATE = '2025-09-06'; 
+        var start = new Date(START_DATE + 'T00:00:00');
+        var days = Math.floor((new Date() - start) / 86400000);
+        el.textContent = 'D+' + (days < 0 ? 0 : days);
+      })();
+    </script>
   </body>
 </html>
