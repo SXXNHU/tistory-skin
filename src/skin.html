@@ -1,7 +1,6 @@
 ﻿<!DOCTYPE html>
 <!-- ============================================================
   📁 SECTION : <head> 태그
-  📌 FILE    : src/html/01_head.html
   📋 DEPLOY  : skin.html 최상단 (DOCTYPE ~ </head>)
   📝 NOTES   : 메타태그, 폰트/아이콘 CDN, 외부 스크립트 링크,
                스킨 CSS 변수(:root), skinOptions 전역 변수 설정
@@ -64,7 +63,6 @@
   </head>
 <!-- ============================================================
   📁 SECTION : 온보딩 랜딩 페이지 HTML
-  📌 FILE    : src/html/02_onboarding.html
   📋 DEPLOY  : skin.html → <body> 바로 아래, #loader 위
   📝 NOTES   : 루트('/') 진입 시에만 표시
                ① 비디오 배경 + 파티클 캔버스
@@ -281,7 +279,6 @@
   <!-- ====== /ONBOARDING LANDING PAGE ====== -->
 <!-- ============================================================
   📁 SECTION : 로딩 스피너
-  📌 FILE    : src/html/03_loader.html
   📋 DEPLOY  : skin.html → #onboarding-root 아래, s_t3 위
   📝 NOTES   : Alpine.js x-show="loading" 으로 제어되는 전체화면 오버레이
                페이지 최초 진입 시 잠깐 표시 후 자동 소멸
@@ -290,7 +287,6 @@
     </div>
 <!-- ============================================================
   📁 SECTION : Tistory 메인 래퍼 + 글로벌 헤더 + 공지 + 방명록
-  📌 FILE    : src/html/04_notices.html
   📋 DEPLOY  : skin.html → #loader 아래 (s_t3 시작)
   📝 NOTES   : ① s_t3 + #index + main 래퍼 오픈
                ② 글로벌 헤더 (카테고리/검색 페이지 타이틀)
@@ -393,7 +389,6 @@
           </s_guest>
 <!-- ============================================================
   📁 SECTION : 글 목록 섹션
-  📌 FILE    : src/html/05_list.html
   📋 DEPLOY  : skin.html → 방명록(#guestbook) 아래
   📝 NOTES   : 카테고리/검색 결과 목록 (s_list)
                썸네일, 제목, 날짜, 카테고리, 요약 포함
@@ -431,7 +426,6 @@
           </s_list>
 <!-- ============================================================
   📁 SECTION : 커버 레이아웃 타입 정의
-  📌 FILE    : src/html/06_cover-types.html
   📋 DEPLOY  : skin.html → 목록(#list) 아래
   📝 NOTES   : hELLO 스킨의 모든 커버 타입 템플릿 (일반적으로 직접 수정하지 않음)
                ─ 이미지형  : list / grid / Z / Z- / N / gallery / slider
@@ -1693,7 +1687,6 @@
           </s_cover_group>
 <!-- ============================================================
   📁 SECTION : 아티클 / 보호된 글 / 일반 페이지 / 페이지네이션
-  📌 FILE    : src/html/07_article.html
   📋 DEPLOY  : skin.html → 커버 그룹(#cover) 아래, </main> 포함
   📝 NOTES   : ① s_article_rep 포스트 퍼마링크
                   - 썸네일 배경 헤더, TOC(목차), 본문, 스크롤스파이
@@ -1875,7 +1868,6 @@
         </main>
 <!-- ============================================================
   📁 SECTION : 사이드바
-  📌 FILE    : src/html/08_sidebar.html
   📋 DEPLOY  : skin.html → </main> 아래 (aside#sidebar)
   📝 NOTES   : ① 글로우 데코 (.sidebar-glow)
                ② 프로필 카드 (아바타, 이름, 상태, 소개)
@@ -1994,7 +1986,6 @@
         </aside>
 <!-- ============================================================
   📁 SECTION : 네비게이션 바 (상단 / 하단 / 스크롤 인디케이터)
-  📌 FILE    : src/html/09_navigation.html
   📋 DEPLOY  : skin.html → 사이드바(aside#sidebar) 아래
                /div(#index 닫기) + s_t3 닫기 태그 까지 포함
   📝 NOTES   : ① #indicator  — 스크롤 진행 바 (상단 고정, z-[100])
@@ -2033,7 +2024,6 @@
     </s_t3>
 <!-- ============================================================
   📁 SECTION : 온보딩 스크립트 (+ </body></html>)
-  📌 FILE    : src/html/10_onboarding-script.html
   📋 DEPLOY  : skin.html → s_t3 닫기 태그 아래 (파일 맨 끝)
   📝 NOTES   : 루트('/') 진입 여부 확인 후 조건부 실행
                ① 타이핑 애니메이션 (WORDS 배열 수정으로 커스텀 가능)
@@ -2045,7 +2035,7 @@
                ⑦ 히어로 fade-up 애니메이션
                ⑧ Latest Posts — RSS 파싱 + 동적 렌더링
                📌 START_DATE = '2025-09-06' 변경 필요
-               📌 비디오 URL: src/html/02_onboarding.html 의 YOUR_VIDEO_URL_HERE.mp4
+               📌 비디오 URL: 온보딩 랜딩 페이지 HTML 섹션의 YOUR_VIDEO_URL_HERE.mp4
 ============================================================ -->
     <!-- ====== ONBOARDING SCRIPTS ====== -->
     <script>

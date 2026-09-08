@@ -1,6 +1,5 @@
 ﻿/* ============================================================
   📁 VENDOR  : 서드파티 CSS (수정 금지)
-  📌 FILE    : src/css/vendor.css
   📋 DEPLOY  : style.css 최상단
   📝 NOTES   : ── L1    ~ L563  : TailwindCSS v3.2.7 base reset
                ── L564  ~ L1810 : FontAwesome 6.2.1
@@ -5706,8 +5705,7 @@ div[data-tistory-react-app=Namecard] {
 
 /* ============================================================
   📁 SECTION : Tistory 기본 UI 오버라이드
-  📌 FILE    : src/css/_base.css
-  📋 DEPLOY  : style.css → vendor.css 아래
+  📋 DEPLOY  : style.css → 서드파티(vendor) 아래
   📝 NOTES   : ① #top 내 구독 버튼 커스텀 스타일
                ② #bottom 다크모드/상단이동 버튼 스타일
 ============================================================ */
@@ -5831,8 +5829,7 @@ div[data-tistory-react-app=Namecard] {
 
 /* ============================================================
   📁 SECTION : 코드블럭 스타일
-  📌 FILE    : src/css/_codeblock.css
-  📋 DEPLOY  : style.css → _base.css 아래
+  📋 DEPLOY  : style.css → 기본 UI 오버라이드 아래
   📝 NOTES   : highlight.js 기반 코드블럭 커스텀
                복사 버튼, 언어 라벨, 라인 하이라이트 등
                (주석 처리된 hover 하이라이트 룰 포함)
@@ -5970,8 +5967,7 @@ pre {
 
 /* ============================================================
   📁 SECTION : 온보딩 랜딩 페이지 스타일
-  📌 FILE    : src/css/_onboarding.css
-  📋 DEPLOY  : style.css → _codeblock.css 아래
+  📋 DEPLOY  : style.css → 코드블럭 스타일 아래
   📝 NOTES   : ── 기본 레이아웃
                    .onboarding-active 시 #main 숨김
                    hELLO 기본 #top/#bottom/#sidebar 재정의
@@ -6953,8 +6949,7 @@ body.onboarding-active #bottom {
 
 /* ============================================================
   📁 SECTION : 목록 / 아티클 / 페이지네이션 스타일
-  📌 FILE    : src/css/_list-article.css
-  📋 DEPLOY  : style.css → _onboarding.css 아래
+  📋 DEPLOY  : style.css → 온보딩 랜딩 페이지 스타일 아래
   📝 NOTES   : ── 목록 헤더 (#list .header)
                ── 포스트 카드 공통 (썸네일, 타이틀, 날짜, 카테고리 뱃지, 요약)
                ── list 뷰 구분선
@@ -7278,8 +7273,7 @@ body.onboarding-active #bottom {
 
 /* ============================================================
   📁 SECTION : 사이드바 스타일
-  📌 FILE    : src/css/_sidebar.css
-  📋 DEPLOY  : style.css → _list-article.css 아래 (파일 맨 끝)
+  📋 DEPLOY  : style.css → 목록/아티클 스타일 아래 (파일 맨 끝)
   📝 NOTES   : ── 사이드바 컨테이너 (#sidebar) — 항상 다크 테마 유지
                ── 글로우 데코 (.sidebar-glow)
                ── 스크롤 래퍼 + 커스텀 스크롤바 (.sidebar-wrap)
