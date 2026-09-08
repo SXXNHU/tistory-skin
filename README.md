@@ -4,95 +4,84 @@
 
 ```
 tistory-skin/
-├── skin.html          ← 🚀 배포용 (build.ps1로 자동 생성)
-├── skin.css           ← 🚀 배포용 (build.ps1로 자동 생성)
-├── build.ps1          ← 빌드 스크립트
-├── package.json
+├── src/
+│   ├── skin.html      ← 🚀 스킨 HTML (2,366줄)
+│   └── skin.css       ← 🚀 스킨 CSS (7,954줄)
 │
-└── src/               ← ✏️ 여기서 개발!
-    ├── html/
-    │   ├── 01_head.html              # <head> 태그 (메타, 폰트, 스크립트 링크)
-    │   ├── 02_onboarding.html        # 온보딩 랜딩 페이지 HTML
-    │   ├── 03_loader.html            # 로딩 스피너
-    │   ├── 04_notices.html           # s_t3 래퍼 + 글로벌 헤더 + 공지 + 방명록
-    │   ├── 05_list.html              # 글 목록 섹션
-    │   ├── 06_cover-types.html       # 커버 레이아웃 타입 (수정 드뭄)
-    │   ├── 07_article.html           # 포스트 퍼마링크 + 페이지네이션
-    │   ├── 08_sidebar.html           # 사이드바
-    │   ├── 09_navigation.html        # 상단/하단 네비게이션 바
-    │   └── 10_onboarding-script.html # 온보딩 JS 스크립트
-    │
-    └── css/
-        ├── vendor.css                # ⚠️ 서드파티 (수정 금지)
-        ├── _base.css                 # Tistory 기본 UI 오버라이드
-        ├── _codeblock.css            # 코드블럭 스타일
-        ├── _onboarding.css           # 온보딩 전체 스타일
-        ├── _list-article.css         # 목록/아티클 스타일
-        └── _sidebar.css              # 사이드바 스타일
+├── blog-assets/
+│   └── lottie/
+│       └── playground.json    # Lottie 애니메이션 데이터
+│
+└── package.json
 ```
+
+티스토리 스킨은 **단일 HTML + 단일 CSS**만 지원하므로 파일을 나누지 않고
+`src/skin.html`, `src/skin.css` 두 개만 직접 편집합니다.
+
+파일 안에는 아래와 같은 배너 주석으로 섹션이 구분되어 있습니다.
+
+```
+<!-- ============================================================
+  📁 SECTION : 온보딩 랜딩 페이지
+  📌 FILE    : src/html/02_onboarding.html
+  ...
+```
+
+`📌 FILE` 경로는 예전 분리 구조의 흔적으로, 지금은 **섹션 이름표 역할**만 합니다.
 
 ---
 
-## ⚡ 개발 워크플로우
+## ⚡ 배포 방법
 
-### 1. 파일 편집
-`src/` 하위 파일을 자유롭게 수정합니다.
-
-### 2. 빌드 (배포 파일 생성)
-```powershell
-.\build.ps1
-```
-→ `skin.html`, `skin.css` 자동 생성
-
-### 3. Tistory 업로드
-- **스킨 편집**: 관리자 → 꾸미기 → 스킨 편집 → HTML/CSS 붙여넣기
-- **스킨 업로드**: 관리자 → 꾸미기 → 스킨 변경 → ZIP 업로드
+1. `src/skin.html`, `src/skin.css` 수정
+2. Tistory 관리자 → 꾸미기 → **스킨 편집** → HTML/CSS에 각각 붙여넣기
+   (또는 꾸미기 → 스킨 변경 → ZIP 업로드)
 
 ---
 
-## 🗺️ HTML 파일별 역할
+## 🗺️ `src/skin.html` 섹션 맵
 
-| 파일 | 줄 수 | 역할 |
-|------|-------|------|
-| `01_head.html` | 57 | 메타태그, CDN 링크, skinOptions 변수 |
-| `02_onboarding.html` | 207 | 랜딩 히어로, 카테고리 그리드, 최신글 |
-| `03_loader.html` | 3 | 전체화면 로딩 스피너 |
-| `04_notices.html` | 93 | 공지사항(목록+퍼마링크), 방명록, 태그 클라우드 |
-| `05_list.html` | 31 | 카테고리/검색 결과 목록 |
-| `06_cover-types.html` | 1,249 | 모든 커버 레이아웃 타입 정의 |
-| `07_article.html` | 171 | 포스트, TOC, 댓글, 이전/다음 팝업 |
-| `08_sidebar.html` | 106 | 프로필, 검색, 카테고리, 소셜 |
-| `09_navigation.html` | 30 | 스크롤바, 상단툴바, 다크모드 버튼 |
-| `10_onboarding-script.html` | 338 | 타이핑/파티클/RSS 렌더링 JS |
+| 줄 범위 | 섹션 | 역할 |
+|---------|------|------|
+| 1 – 64 | `<head>` | 메타태그, 폰트/아이콘 CDN, `:root` 변수, `skinOptions` |
+| 65 – 281 | 온보딩 | 랜딩 히어로, 카테고리 그리드, 최신글 |
+| 282 – 290 | 로더 | 전체화면 로딩 스피너 |
+| 291 – 393 | 공지 / 방명록 | `s_t3` 래퍼, 글로벌 헤더, 공지사항, 태그 클라우드 |
+| 394 – 431 | 목록 | 카테고리 / 검색 결과 목록 |
+| 432 – 1,693 | 커버 타입 | 모든 커버 레이아웃 타입 정의 (수정 드묾) |
+| 1,694 – 1,875 | 아티클 | 포스트 퍼마링크, TOC, 댓글, 이전/다음 팝업 |
+| 1,876 – 1,994 | 사이드바 | 프로필, 검색, 카테고리, 소셜 |
+| 1,995 – 2,033 | 네비게이션 | 스크롤바, 상단 툴바, 다크모드 버튼 |
+| 2,034 – 2,366 | 온보딩 스크립트 | 타이핑 / 파티클 / RSS 렌더링 JS |
 
-## 🎨 CSS 파일별 역할
+## 🎨 `src/skin.css` 섹션 맵
 
-| 파일 | 줄 수 | 역할 |
-|------|-------|------|
-| `vendor.css` | 5,696 | TailwindCSS + FontAwesome + lazysizes + Swiper |
-| `_base.css` | 307 | Tistory 기본 UI 보정 |
-| `_codeblock.css` | 132 | 코드블럭 하이라이터 스타일 |
-| `_onboarding.css` | 1,183 | 랜딩 페이지 전체 스타일 |
-| `_list-article.css` | 291 | 목록, 포스트 카드, 페이지네이션 |
-| `_sidebar.css` | 663 | 사이드바 전체 스타일 |
+| 줄 범위 | 섹션 | 역할 |
+|---------|------|------|
+| 1 – 5,706 | vendor | ⚠️ 서드파티 (TailwindCSS + FontAwesome + lazysizes + Swiper) — 수정 금지 |
+| 5,707 – 5,831 | base | Tistory 기본 UI 오버라이드 |
+| 5,832 – 5,970 | codeblock | highlight.js 코드블럭 스타일 |
+| 5,971 – 6,953 | onboarding | 랜딩 페이지 전체 스타일 |
+| 6,954 – 7,278 | list / article | 목록, 포스트 카드, 페이지네이션 |
+| 7,279 – 7,954 | sidebar | 사이드바 전체 스타일 |
 
 ---
 
 ## 📌 자주 수정하는 부분
 
 ### 온보딩 커스텀
-- **타이핑 단어 변경**: `10_onboarding-script.html` → `var WORDS = [...]`
-- **수강 시작일 변경**: `10_onboarding-script.html` → `var START_DATE = '2025-09-06'`
-- **히어로 텍스트**: `02_onboarding.html` → `.onboarding-hero` 섹션
-- **배경 비디오**: `02_onboarding.html` → `src="YOUR_VIDEO_URL_HERE.mp4"`
-- **카테고리 카드**: `02_onboarding.html` → `.onboarding-cat-grid` (아이콘, 링크, 글 수)
+- **타이핑 단어 변경**: 온보딩 스크립트 → `var WORDS = [...]`
+- **수강 시작일 변경**: 온보딩 스크립트 → `var START_DATE = '2025-09-06'`
+- **히어로 텍스트**: 온보딩 섹션 → `.onboarding-hero`
+- **배경 비디오**: 온보딩 섹션 → `src="YOUR_VIDEO_URL_HERE.mp4"`
+- **카테고리 카드**: 온보딩 섹션 → `.onboarding-cat-grid` (아이콘, 링크, 글 수)
 
 ### 사이드바 커스텀
-- **소셜 링크**: `08_sidebar.html` → `.sb-social` (GitHub URL, Email 주소)
-- **프로필 문구**: `08_sidebar.html` → `.sb-profile-desc`
-- **소개**: `08_sidebar.html` → `.sb-status` (직책 등)
+- **소셜 링크**: 사이드바 섹션 → `.sb-social` (GitHub URL, Email 주소)
+- **프로필 문구**: 사이드바 섹션 → `.sb-profile-desc`
+- **소개**: 사이드바 섹션 → `.sb-status` (직책 등)
 
 ### 스타일 커스텀
-- **온보딩 색상/레이아웃**: `src/css/_onboarding.css`
-- **사이드바 색상**: `src/css/_sidebar.css`
-- **포스트 목록 스타일**: `src/css/_list-article.css`
+- **온보딩 색상/레이아웃**: `src/skin.css` onboarding 섹션
+- **사이드바 색상**: `src/skin.css` sidebar 섹션
+- **포스트 목록 스타일**: `src/skin.css` list / article 섹션
