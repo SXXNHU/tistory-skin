@@ -6955,6 +6955,9 @@ html.plx-active.dark body { background: #091717; }
   letter-spacing: 0.01em;
   color: var(--plx-ink);
   text-wrap: balance;
+  /* #index의 Tailwind break-all이 상속돼 단어 중간에서 잘리는 것을 막음 */
+  word-break: normal;
+  overflow-wrap: normal;
 }
 
 .plx-quote-author {
