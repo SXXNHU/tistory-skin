@@ -7117,7 +7117,8 @@ html.plx-active.dark body { background: #091717; }
   40% { transform: scale(1); opacity: 1; }
 }
 
-.plx-post { display: block; }
+/* min-width: 0 — 그리드 아이템 자동 최소너비 해제 (h2 nowrap 시 컬럼 밀림 방지) */
+.plx-post { display: block; min-width: 0; }
 
 .plx-thumb {
   aspect-ratio: 16 / 11;
@@ -7158,6 +7159,10 @@ html.plx-active.dark body { background: #091717; }
   line-height: 1.35;
   letter-spacing: -0.01em;
   transition: color 0.15s;
+  /* 제목은 항상 1줄 — 넘치면 말줄임 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .plx-post:hover h2 { color: var(--plx-teal); }
